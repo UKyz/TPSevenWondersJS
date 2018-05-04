@@ -12,9 +12,11 @@ describe('world-worldEvents_.js', () => {
     before(() => {
       g = new Divinity('test', 1);
       g.init();
+      stub = sinon.stub(Math, 'random').returns(0.999);
     });
 
     after(() => {
+      stub.restore();
       g.endWorld();
     });
 
@@ -53,9 +55,11 @@ describe('world-worldEvents_.js', () => {
     let g;
     before(() => {
       g = new Divinity('test', 1);
+      stub = sinon.stub(Math, 'random').returns(0.999);
     });
 
     after(() => {
+      stub.restore();
       g.endWorld();
     });
 
