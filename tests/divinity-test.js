@@ -1,11 +1,14 @@
+// Requiert chai pour fonctionner
 const chai = require('chai');
+// Requiert Sinon pour fonctionner (sinon.stub)
+const sinon = require('sinon');
 const chaiAsPromised = require('chai-as-promised');
 const {Divinity} = require('../app/divinity');
 
 chai.use(chaiAsPromised);
 chai.should();
 
-describe('world-worldEvents_.js', () => {
+describe('divinity.js', () => {
   describe('worldEvents', () => {
     let g;
 
