@@ -1,10 +1,12 @@
 const EventEmitter = require('events');
+// Permet de connecter la cité et la divinity
 
 class Divinity {
   constructor(name, timeFactor) {
     this.name_ = name || 'UNKDIVINITY';
     this.corn_ = 0;
     this.gold_ = 0;
+    this.wood_ = 0;
     this.worldEvents_ = new EventEmitter();
     this.timeFactor_ = timeFactor || 1000;
   }
@@ -13,13 +15,15 @@ class Divinity {
     this.gaiaInterval_ = setInterval(() => {
       this.worldEvents.emit('favor', {
         corn: this.corn * 0.1,
-        gold: this.gold * 0.1
+        gold: this.gold * 0.1,
+        wood: this.wood * 0.1
       });
 
       if (Math.random() > 0.95) {
         this.worldEvents.emit('blessing', {
           corn: 100 * this.corn,
-          gold: 100 * this.gold
+          gold: 100 * this.gold,
+          wood: 100 * this.wood
         });
       }
 
@@ -59,12 +63,31 @@ class Divinity {
     });
   }
 
+  offeringWood(offer) {
+    return new Promise((resolve, reject) => {
+      if (typeof offer === 'number') {
+        setTimeout(() => {
+          this.wood_ = (offer >= 0) ? this.wood + offer : 0;
+          resolve();
+        }, 4 * this.timeFactor * Math.random());
+      } else {
+        reject(new Error(
+          `You didn't gave a number of wood to ${this.name}, Earth collapsed`
+        ));
+      }
+    });
+  }
+
   get corn() {
     return this.corn_;
   }
 
   get gold() {
     return this.gold_;
+  }
+
+  get wood() {
+    return this.wood_;
   }
 
   get worldEvents() {

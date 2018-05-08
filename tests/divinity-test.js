@@ -1,3 +1,5 @@
+// Run : mocha ./tests/divinity-test.js
+
 // Requiert chai pour fonctionner
 const chai = require('chai');
 // Requiert Sinon pour fonctionner (sinon.stub)
@@ -28,7 +30,8 @@ describe('divinity.js', () => {
         g.worldEvents.on('favor', favor => {
           favor.corn.should.be.equal(0);
           favor.gold.should.be.equal(0);
-          resolve();
+          favor.wood.should.be.equal(0);
+          resolve(); // ? Quest ce c'est ?
         });
       });
     });
@@ -38,6 +41,7 @@ describe('divinity.js', () => {
         g.worldEvents.on('blessing', blessing => {
           blessing.corn.should.be.equal(0);
           blessing.gold.should.be.equal(0);
+          blessing.wood.should.be.equal(0);
           resolve();
         });
       });
@@ -97,6 +101,22 @@ describe('divinity.js', () => {
       await (g.offeringGold('aze')).should.be.rejectedWith(Error,
         /You didn't gave a number of gold to \b[a-zA-Z].*, Earth collapsed/);
     });
+
+    it('should update divinity\'s wood', async () => {
+      g.wood.should.be.equal(0);
+
+      await g.offeringWood(100);
+      g.wood.should.be.equal(100);
+
+      await g.offeringWood(1000);
+      g.wood.should.be.equal(1100);
+
+      await g.offeringWood(-1);
+      g.wood.should.be.equal(0);
+
+      await (g.offeringWood('aze')).should.be.rejectedWith(Error,
+        /You didn't gave a number of wood to \b[a-zA-Z].*, Earth collapsed/);
+    });
   });
 
   describe('Updated values for Favor and Blessings', () => {
@@ -105,9 +125,11 @@ describe('divinity.js', () => {
 
       g.corn.should.be.equal(0);
       g.gold.should.be.equal(0);
+      g.wood.should.be.equal(0);
       await Promise.all([
         g.offeringCorn(100),
-        g.offeringGold(1000)
+        g.offeringGold(1000),
+        g.offeringWood(10000)
       ]);
 
       g.init();
@@ -116,6 +138,7 @@ describe('divinity.js', () => {
         g.worldEvents.on('favor', favor => {
           favor.corn.should.be.equal(10);
           favor.gold.should.be.equal(100);
+          favor.wood.should.be.equal(1000);
           g.endWorld();
           resolve();
         });
@@ -127,9 +150,11 @@ describe('divinity.js', () => {
 
       g.corn.should.be.equal(0);
       g.gold.should.be.equal(0);
+      g.wood.should.be.equal(0);
       await Promise.all([
         g.offeringCorn(100),
-        g.offeringGold(1000)
+        g.offeringGold(1000),
+        g.offeringWood(10000)
       ]);
 
       g.init();
@@ -138,6 +163,7 @@ describe('divinity.js', () => {
         g.worldEvents.on('blessing', blessing => {
           blessing.corn.should.be.equal(10000);
           blessing.gold.should.be.equal(100000);
+          blessing.wood.should.be.equal(1000000);
           g.endWorld();
           resolve();
         });
