@@ -1,3 +1,5 @@
+const EventEmitter = require('events');
+
 class City {
   constructor(user, name, timeFactor) {
     this.name_ = name || 'UNKCITY';
@@ -7,7 +9,7 @@ class City {
     this.wood_ = 0;
     this.listUnits_ = [];
     this.listWonders_ = [];
-    // This.worldEvents_ = new EventEmitter();
+    this.worldEvents_ = new EventEmitter();
     this.timeFactor_ = timeFactor || 1000;
   }
 
@@ -19,34 +21,13 @@ class City {
         });
       }
 
-      if (Math.random() > 0.90) {
-        this.worldEvents.emit('deathUnit', {
-          unit: 1
-        });
-      }
 
-      /*
-        If (Math.random() > 0.99) {
-        this.worldEvents.emit('retribution', Math.floor(10000 * Math.random()));
-      }
-      */
+
     }, this.timeFactor);
   }
 
   get worldEvents() {
     return this.worldEvents_;
-  }
-
-  get name() {
-    return this.name_;
-  }
-
-  get unit() {
-    return this.nbUnits_;
-  }
-
-  get user() {
-    return this.user_;
   }
 
   get corn() {
@@ -61,7 +42,17 @@ class City {
     return this.wood_;
   }
 
+  get name() {
+    return this.name_;
+  }
+
   get timeFactor() {
     return this.timeFactor_;
   }
+
+  endWorld() {
+    clearInterval(this.gaiaInterval_);
+  }
 }
+
+module.exports = {City};
