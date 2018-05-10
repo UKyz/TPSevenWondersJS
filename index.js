@@ -9,16 +9,18 @@ const main = async () => {
   var questions = [
     { key: 'nameUser1', msg: 'Player 1 what is your username? ', fn: 'prompt' },
     { key: 'nameCity1', msg: 'Player 1 what is the name of your city? ', fn: 'prompt' },
+    { key: 'nameDivinity1', msg: 'Player 1 what is the name of your divinity? ', fn: 'prompt' },
     { key: 'nameUser2', msg: 'Player 2 what is your username? ', fn: 'prompt' },
-    { key: 'nameCity2', msg: 'Player 2 what is the name of your city? ', fn: 'prompt' }
+    { key: 'nameCity2', msg: 'Player 2 what is the name of your city? ', fn: 'prompt' },
+    { key: 'nameDivinity2', msg: 'Player 2 what is the name of your divinity? ', fn: 'prompt' }
   ];
 
   let city1;
   let city2;
   await nodeAsk(questions).then(
     function(answers) {
-      city1 = new City(answers['nameUser1'], answers['nameCity1'], 1);
-      city2 = new City(answers['nameUser2'], answers['nameCity2'], 1);
+      city1 = new City(answers['nameUser1'], answers['nameCity1'], answers['nameDivinity1'], 1);
+      city2 = new City(answers['nameUser2'], answers['nameCity2'], answers['nameDivinity2'], 1);
       //console.log(JSON.stringify(answers,0,2));
     }
   ).catch(
@@ -28,8 +30,11 @@ const main = async () => {
     }
   );
 
-  console.log(city1.gold);
-  console.log(city1.name);
+  city1.buyCorn(-10);
+  city2.buyWood(50);
+
+  city1.showStatus();
+  city2.showStatus();
 
   /*const r1 = new Restaurant();
   const ordersPromises = [

@@ -43,4 +43,63 @@ describe('city.js', () => {
       });
     });
   });
+
+  describe('City', () => {
+    let g;
+
+    before(() => {
+      g = new City("Player 1", "Moi", 1);
+      g.init();
+      stub = sinon.stub(Math, 'random').returns(0.999);
+    });
+
+    after(() => {
+      stub.restore();
+      g.endWorld();
+    });
+
+    it('should update city\'s gold and corn', async () => {
+      g.gold.should.be.equal(100);
+      g.corn.should.be.equal(0);
+
+      g.buyCorn(50);
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(50);
+
+      g.buyCorn(100);
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(50);
+
+      g.buyCorn(-10);
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(50);
+
+      g.buyCorn('10');
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(50);
+
+    });
+
+    it('should update city\'s gold and wood', async () => {
+      g.gold.should.be.equal(50);
+      g.wood.should.be.equal(0);
+
+      g.buyWood(10);
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(10);
+
+      g.buyWood(25);
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(10);
+
+      g.buyWood(-10);
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(10);
+
+      g.buyWood('10');
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(10);
+
+    });
+  })
 });
