@@ -15,7 +15,7 @@ describe('city.js', () => {
     let g;
 
     before(() => {
-      g = new City("Player 1", "Moi", 1);
+      g = new City('Player 1', 'Moi', 1);
       g.init();
       stub = sinon.stub(Math, 'random').returns(0.999);
     });
@@ -48,7 +48,7 @@ describe('city.js', () => {
     let g;
 
     before(() => {
-      g = new City("Player 1", "Moi", 1);
+      g = new City('Player 1', 'Moi', 1);
       g.init();
       stub = sinon.stub(Math, 'random').returns(0.999);
     });
@@ -77,7 +77,6 @@ describe('city.js', () => {
       g.buyCorn('10');
       g.gold.should.be.equal(50);
       g.corn.should.be.equal(50);
-
     });
 
     it('should update city\'s gold and wood', async () => {
@@ -99,7 +98,6 @@ describe('city.js', () => {
       g.buyWood('10');
       g.gold.should.be.equal(30);
       g.wood.should.be.equal(10);
-
     });
-  })
+  });
 });

@@ -9,6 +9,7 @@ class City {
     this.gold_ = 100;
     this.wood_ = 0;
     this.divinity_ = new Divinity(nameDivinity, timeFactor);
+    this.unitDamage = 1;
     this.listUnits_ = [];
     this.listWonders_ = [];
     this.worldEvents_ = new EventEmitter();
@@ -55,24 +56,24 @@ class City {
   }
 
   buyCorn(nbCorn) {
-    this.corn_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' && nbCorn
-      >= 0) ? this.corn_ + nbCorn: this.corn_;
-    this.gold_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' && nbCorn
-      >= 0) ? this.gold_ - nbCorn: this.gold_;
+    this.corn_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
+      nbCorn >= 0) ? this.corn_ + nbCorn : this.corn_;
+    this.gold_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
+      nbCorn >= 0) ? this.gold_ - nbCorn : this.gold_;
   }
 
   buyWood(nbWood) {
-    this.wood_ = (this.gold_ >= nbWood*2 && typeof nbWood === 'number' && nbWood
-      >= 0) ? this.wood_ + nbWood: this.wood_;
-    this.gold_ = (this.gold_ >= nbWood*2 && typeof nbWood === 'number' && nbWood
-      >= 0) ? this.gold_ - nbWood*2: this.gold_;
+    this.wood_ = (this.gold_ >= (nbWood * 2) && typeof nbWood === 'number' &&
+      nbWood >= 0) ? this.wood_ + nbWood : this.wood_;
+    this.gold_ = (this.gold_ >= (nbWood * 2) && typeof nbWood === 'number' &&
+      nbWood >= 0) ? this.gold_ - (nbWood * 2) : this.gold_;
   }
 
   showStatus() {
-    console.log("Player : " + this.user_ + " | City : " + this.name_ +
-      " | Divinity : " + this.divinity_.name);
-    console.log("Gold : " + this.gold_ + " | Corn : " + this.corn_ +
-      " | Wood : " + this.wood_);
+    console.log('Player : ' + this.user_ + ' | City : ' + this.name_ + ' |' +
+      ' Divinity : ' + this.divinity_.name);
+    console.log('Gold : ' + this.gold_ + ' | Corn : ' + this.corn_ + ' |' +
+      ' Wood : ' + this.wood_);
   }
 
   endWorld() {
