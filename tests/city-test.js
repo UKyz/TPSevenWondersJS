@@ -33,5 +33,14 @@ describe('city.js', () => {
         });
       });
     });
+
+    it('should have emitted corn', async () => {
+      await new Promise(resolve => {
+        g.worldEvents.on('growCorn', grow => {
+          grow.corn.should.be.equal(1);
+          resolve(); // ? Quest ce c'est ?
+        });
+      });
+    });
   });
 });

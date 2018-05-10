@@ -20,10 +20,12 @@ class City {
           unit: 1
         });
       }
-
-
-
     }, this.timeFactor);
+    this.gaiaInterval2_ = setInterval(() => {
+      this.worldEvents.emit('growCorn', {
+        corn: 1
+      });
+    }, 10*this.timeFactor);
   }
 
   get worldEvents() {
@@ -52,6 +54,7 @@ class City {
 
   endWorld() {
     clearInterval(this.gaiaInterval_);
+    clearInterval(this.gaiaInterval2_);
   }
 }
 
