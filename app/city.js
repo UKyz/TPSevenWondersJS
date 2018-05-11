@@ -1,5 +1,6 @@
 const EventEmitter = require('events');
 const {Divinity} = require('../app/divinity');
+const {Unit} = require('../app/unit');
 
 class City {
   constructor(user, name, nameDivinity, timeFactor) {
@@ -17,18 +18,25 @@ class City {
   }
 
   init() {
+    for (var i = 0; i < 10; i++) {
+      this.listUnits_.push(new Unit(20, this.unitDamage));
+    }
+
     this.gaiaInterval_ = setInterval(() => {
-      if (Math.random() > 0.90) {
+      if (Math.random() > 0.95) {
         this.worldEvents.emit('bornUnit', {
           unit: 1
         });
+        this.listUnits_.push(new Unit());
       }
     }, this.timeFactor);
+
     this.gaiaInterval2_ = setInterval(() => {
       this.worldEvents.emit('growCorn', {
         corn: 1
       });
-    }, this.timeFactor);
+      this.corn_ += 10;
+    }, this.timeFactor * 20);
   }
 
   get worldEvents() {
@@ -51,6 +59,10 @@ class City {
     return this.divinity_;
   }
 
+  get nbUnits() {
+    return this.listUnits_.length;
+  }
+
   get timeFactor() {
     return this.timeFactor_;
   }
@@ -62,6 +74,14 @@ class City {
       nbCorn >= 0) ? this.gold_ - nbCorn : this.gold_;
   }
 
+  sellCorn(nbCorn) {
+      if (this.corn_ >= nbCorn && typeof nbCorn === 'number' &&
+        nbCorn >= 0) {
+        this.corn_ -= nbCorn;
+        this.gold_ += nbCorn;
+      }
+  }
+
   buyWood(nbWood) {
     this.wood_ = (this.gold_ >= (nbWood * 2) && typeof nbWood === 'number' &&
       nbWood >= 0) ? this.wood_ + nbWood : this.wood_;
@@ -69,9 +89,18 @@ class City {
       nbWood >= 0) ? this.gold_ - (nbWood * 2) : this.gold_;
   }
 
+  chopWood() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this.wood_ += 10 + (Math.random() * 10);
+        resolve();
+      }, 20 * this.timeFactor);
+    });
+  }
+
   showStatus() {
     console.log('Player : ' + this.user_ + ' | City : ' + this.name_ + ' |' +
-      ' Divinity : ' + this.divinity_.name);
+      ' Divinity : ' + this.divinity_.name + ' | nbUnits : ' + this.nbUnits);
     console.log('Gold : ' + this.gold_ + ' | Corn : ' + this.corn_ + ' |' +
       ' Wood : ' + this.wood_);
   }

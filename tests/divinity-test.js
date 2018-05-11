@@ -4,6 +4,7 @@
 const chai = require('chai');
 // Requiert Sinon pour fonctionner (sinon.stub)
 const sinon = require('sinon');
+let stub = require('sinon');
 const chaiAsPromised = require('chai-as-promised');
 const {Divinity} = require('../app/divinity');
 
