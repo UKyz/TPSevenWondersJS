@@ -37,6 +37,17 @@ class City {
       });
       this.corn_ += 10;
     }, this.timeFactor * 20);
+
+    this.divinity_.worldEvents.on('favor', favor => {
+      this.corn_ += favor.corn;
+      this.gold_ += favor.gold;
+      this.wood_ += favor.wood;
+    });
+    this.divinity_.worldEvents.on('blessing', favor => {
+      this.corn_ += favor.corn;
+      this.gold_ += favor.gold;
+      this.wood_ += favor.wood;
+    });
   }
 
   get worldEvents() {
@@ -75,11 +86,11 @@ class City {
   }
 
   sellCorn(nbCorn) {
-      if (this.corn_ >= nbCorn && typeof nbCorn === 'number' &&
-        nbCorn >= 0) {
-        this.corn_ -= nbCorn;
-        this.gold_ += nbCorn;
-      }
+    if (this.corn_ >= nbCorn && typeof nbCorn === 'number' &&
+      nbCorn >= 0) {
+      this.corn_ -= nbCorn;
+      this.gold_ += nbCorn;
+    }
   }
 
   buyWood(nbWood) {

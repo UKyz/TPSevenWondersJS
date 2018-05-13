@@ -20,7 +20,11 @@
   "dependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "enquirer": "^1.0.3",
+    "figlet": "^1.2.0",
+    "figlet-cli": "^0.1.0",
     "node-ask": "^1.0.1",
+    "prompt-list": "^3.1.2",
     "sinon": "^5.0.3"
   }
 }

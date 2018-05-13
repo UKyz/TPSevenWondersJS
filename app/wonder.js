@@ -1,14 +1,43 @@
+const EventEmitter = require('events');
+
 class Wonder {
-  constructor(time, costBuild, typeBuild, nbBuild, typeEarn, nbEarn, timeEarn) {
-    this.timeBuilding_ = time || 0;
-    this.costBuilding_ = costBuild || 0;
-    this.typeOfProductToBuild_ = typeBuild || 0;
-    this.nbOfProductToBuild_ = nbBuild || 0;
-    this.typeOfProductEarned_ = typeEarn || 0;
-    this.nbOfProductEarned_ = nbEarn || 0;
-    this.timeBetweenEarning_ = timeEarn || 0;
-    // This.worldEvents_ = new EventEmitter();
-    // This.timeFactor_ = timeFactor || 1000;
+  constructor(object) {
+    this.timeBuilding_ = object.timeBuild;
+    this.costBuilding_ = object.costBuild;
+    this.typeOfProductToBuild_ = object.typeBuild;
+    this.nbOfProductToBuild_ = object.nbBuild;
+    this.typeOfProductEarned_ = object.typeEarn;
+    this.nbOfProductEarned_ = object.nbEarn;
+    this.timeBetweenEarning_ = object.timeEarn;
+    this.worldEvents = new EventEmitter();
+    this.timeFactor_ = object.timeFactors;
+  }
+
+  init() {
+    setTimeout(() => {
+      this.gaiaInterval_ = setInterval(() => {
+        if (this.typeOfProductEarned_ === 'corn') {
+          this.worldEvents.emit('wonderEarn', {
+            corn: this.nbOfProductEarned_
+          });
+        }
+        else if (this.typeOfProductEarned_ === 'gold') {
+          this.worldEvents.emit('wonderEarn', {
+            gold: this.nbOfProductEarned_
+          });
+        }
+        else if (this.typeOfProductEarned_ === 'wood') {
+          this.worldEvents.emit('wonderEarn', {
+            wood: this.nbOfProductEarned_
+          });
+        }
+        else if (this.typeOfProductEarned_ === 'unit') {
+          this.worldEvents.emit('wonderEarn', {
+            unit: this.nbOfProductEarned_
+          });
+        }
+      }, this.timeFactor_ * this.timeBetweenEarning_);
+    }, this.timeFactor_ * this.timeBuilding_);
   }
 
   get timeBuilding() {
@@ -38,4 +67,14 @@ class Wonder {
   get timeBetweenEarning() {
     return this.timeBetweenEarning_;
   }
+
+  get timeFactor() {
+    return this.timeFactor_;
+  }
+
+  endWorld() {
+    clearInterval(this.gaiaInterval_);
+  }
 }
+
+module.exports = {Wonder};
