@@ -43,8 +43,6 @@ xo
   * Fauquembergue Victor
   * Laguadec Julien
 
-Using : https://www.npmjs.com/package/node-ask#asking-multiple-questions-in-one-call 
-
 [TDDWiki]: https://en.wikipedia.org/wiki/Test-driven_development#Test_structure
 [chai]: https://www.npmjs.com/package/chai
 [node-ask]: https://www.npmjs.com/package/node-ask
