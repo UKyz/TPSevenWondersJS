@@ -24,7 +24,6 @@ yarn install
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
 
 ## Execute the game :
-  Execute the main :
   
 ```bash
 node index.js
