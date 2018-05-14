@@ -65,7 +65,6 @@ describe('city.js', () => {
       });
 
       g.nbUnits.should.be.equal(11);
-
     });
   });
 

@@ -20,18 +20,15 @@ class Wonder {
           this.worldEvents.emit('wonderEarn', {
             corn: this.nbOfProductEarned_
           });
-        }
-        else if (this.typeOfProductEarned_ === 'gold') {
+        } else if (this.typeOfProductEarned_ === 'gold') {
           this.worldEvents.emit('wonderEarn', {
             gold: this.nbOfProductEarned_
           });
-        }
-        else if (this.typeOfProductEarned_ === 'wood') {
+        } else if (this.typeOfProductEarned_ === 'wood') {
           this.worldEvents.emit('wonderEarn', {
             wood: this.nbOfProductEarned_
           });
-        }
-        else if (this.typeOfProductEarned_ === 'unit') {
+        } else if (this.typeOfProductEarned_ === 'unit') {
           this.worldEvents.emit('wonderEarn', {
             unit: this.nbOfProductEarned_
           });

@@ -18,7 +18,7 @@ class City {
   }
 
   init() {
-    for (var i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       this.listUnits_.push(new Unit(20, this.unitDamage));
     }
 
@@ -54,6 +54,10 @@ class City {
     return this.worldEvents_;
   }
 
+  get user() {
+    return this.user_;
+  }
+
   get gold() {
     return this.gold_;
   }
@@ -79,10 +83,12 @@ class City {
   }
 
   buyCorn(nbCorn) {
-    this.corn_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
-      nbCorn >= 0) ? this.corn_ + nbCorn : this.corn_;
-    this.gold_ = (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
-      nbCorn >= 0) ? this.gold_ - nbCorn : this.gold_;
+    if (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
+      nbCorn >= 0) {
+      this.corn_ += nbCorn;
+      this.gold_ -= nbCorn;
+    }
+    console.log('Corn ' + this.corn_ + ' Gold ' + this.gold_);
   }
 
   sellCorn(nbCorn) {
@@ -101,7 +107,7 @@ class City {
   }
 
   chopWood() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         this.wood_ += 10 + (Math.random() * 10);
         resolve();

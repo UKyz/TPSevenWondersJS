@@ -16,15 +16,15 @@ describe('wonder.js', () => {
     let g;
 
     before(() => {
-      g = new Wonder(new Object({
-        timeBuild : 5,
-        costBuild : 2,
-        typeBuild : 'wood',
-        nbBuild : 2,
-        typeEarn : 'corn',
-        nbEarn : 1,
-        timeEarn : 10,
-        timeFactors : 10}));
+      g = new Wonder({
+        timeBuild: 5,
+        costBuild: 2,
+        typeBuild: 'wood',
+        nbBuild: 2,
+        typeEarn: 'corn',
+        nbEarn: 1,
+        timeEarn: 10,
+        timeFactors: 10});
       g.init();
       stub = sinon.stub(Math, 'random').returns(0.999);
     });
@@ -46,15 +46,12 @@ describe('wonder.js', () => {
     });
 
     it('should earn new resources', async () => {
-
       await new Promise(resolve => {
         g.worldEvents.on('wonderEarn', earn => {
           earn.corn.should.be.equal(g.nbOfProductEarned);
           resolve(); // ? Quest ce c'est ?
         });
       });
-
     });
-
   });
 });
