@@ -3,6 +3,14 @@
 
 For this project we had to implement a game based on Seven Wonders in node JS. In this game for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
+## Install : 
+
+```bash
+git clone https://github.com/UKyz/TPSevenWondersJS.git
+cd TPSevenWondersJS
+yarn install
+```
+
 ## Gameplay :
   ### The city
   You will control a city, your city. You need to bring the city on the top to win the battle.
@@ -14,15 +22,6 @@ For this project we had to implement a game based on Seven Wonders in node JS. I
   You will be able to build wonders to help you win the battle. Wonders are beautiful and also very helpful to grow faster the number of resources of your city.
   ### The scientist 
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
-  
-
-## Install : 
-
-```bash
-git clone https://github.com/UKyz/TPSevenWondersJS.git
-cd TPSevenWondersJS
-yarn install
-```
 
 ## Execute the game :
   Execute the main :
