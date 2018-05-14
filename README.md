@@ -17,14 +17,15 @@ For this project we had to implement a game based on Seven Wonders in node JS. I
   
 
 ## Install : 
-  Clone the directory git :
-  
+
 ```bash
-git clone https://github.com/UKyz/TPSevenWondersJS
+git clone https://github.com/UKyz/TPSevenWondersJS.git
+cd TPSevenWondersJS
+yarn install
 ```
 
 ## Execute the game :
-  Execute the file 'index.js' :
+  Execute the main :
   
 ```bash
 node index.js
