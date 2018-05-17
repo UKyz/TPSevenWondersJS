@@ -161,8 +161,7 @@ const play2Wonder = async (city, answer) => {
 };
 
 const play1 = async (city, answer) => {
-
-  let listChoices = [];
+  const listChoices = [];
   let messageQ = '';
 
   if (answer === '1- Buy, get or sell resources') {
@@ -183,11 +182,11 @@ const play1 = async (city, answer) => {
   } else if (answer === '4- Build a wonder') {
     city.showWonderStatus();
     for (let i = 0; i < city.lenghtListWonders; i++) {
-      if (!city.listWonders_[i].isInit) {
-        listChoices.push((i + 1) + '- ' + city.listWonders_[i].name);
-      } else {
+      if (city.listWonders_[i].isInit) {
         listChoices.push({name: (i + 1) + '- ' + city.listWonders_[i].name,
           disabled: 'Already built'});
+      } else {
+        listChoices.push((i + 1) + '- ' + city.listWonders_[i].name);
       }
     }
     messageQ = 'What do you want to build?';
@@ -238,7 +237,6 @@ const gameLoop = async (city1, city2) => {
 
     let city;
     let message = 'Time to play ';
-    let player;
 
     if (i % 2 === 0) {
       city = city1;
@@ -249,7 +247,7 @@ const gameLoop = async (city1, city2) => {
     message += city.user;
     city.showStatus();
 
-    let listChoices = [
+    const listChoices = [
       '1- Buy, get or sell resources',
       '2- Do an offering',
       '4- Build a wonder',
@@ -294,7 +292,6 @@ const gameLoop = async (city1, city2) => {
 };
 
 const main = async () => {
-
   const listWondersCorn = [
     {name: 'Champs1', timeBuild: 30, costBuild: 40, typeBuild: 'corn',
       nbBuild: 30, typeEarn: 'corn', nbEarn: 5, timeEarn: 20,

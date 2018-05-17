@@ -193,7 +193,7 @@ describe('city.js', () => {
     });
 
     it('should update city\'s gold by offering', async () => {
-      g.gold.should.be.equal(30)
+      g.gold.should.be.equal(30);
 
       g.offeringGold(-10);
       g.gold.should.be.equal(30);
@@ -218,12 +218,19 @@ describe('city.js', () => {
         user: 'Moi',
         nameDivinity: 'Divinity',
         timeF: 100,
-        listW: [new Wonder({name: 'Test1', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
-          nbBuild: 30, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
-          timeFactors: 1000}),
-          new Wonder({name: 'Test2', timeBuild: 40, costBuild: 70, typeBuild: 'unit',
-            nbBuild: 15, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
-            timeFactors: 1000})]});
+        listW: [
+          new Wonder({
+            name: 'Test1', timeBuild: 30, costBuild: 60,
+            typeBuild: 'wood', nbBuild: 30, typeEarn: 'unit', nbEarn: 5,
+            timeEarn: 40, timeFactors: 1000
+          }),
+          new Wonder({
+            name: 'Test2', timeBuild: 40, costBuild: 70,
+            typeBuild: 'unit', nbBuild: 15, typeEarn: 'unit', nbEarn: 5,
+            timeEarn: 40, timeFactors: 1000
+          })
+        ]
+      });
       g.init();
       stub = sinon.stub(Math, 'random').returns(0.999);
     });

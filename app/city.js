@@ -1,7 +1,6 @@
 const EventEmitter = require('events');
 const {Divinity} = require('../app/divinity');
 const {Unit} = require('../app/unit');
-const {Wonder} = require('../app/wonder');
 
 class City {
   constructor(object) {
@@ -100,14 +99,12 @@ class City {
   wonder(index) {
     if (index === 'number' && index >= 0 && index < this.nbWonders) {
       return this.listWonders_[index];
-    } else {
-      return null;
     }
   }
 
   formUnit(nbUnit) {
-    if (this.gold_ >= (nbUnit * 2) && typeof nbUnit === 'number' && nbUnit >= 0)
-    {
+    if (this.gold_ >= (nbUnit * 2) && typeof nbUnit === 'number' &&
+      nbUnit >= 0) {
       for (let i = 0; i < nbUnit; i++) {
         this.listUnits_.push(new Unit(16, this.unitDamage));
       }
@@ -183,7 +180,7 @@ class City {
 
   showWonderStatus() {
     for (let i = 0; i < this.listWonders_.length; i++) {
-      if (!this.listWonders_[i].isInit) {
+      if (this.listWonders_[i].isInit) {
         console.log((i + 1) + '- ' + this.listWonders_[i].showStatus());
       } else {
         console.log((i + 1) + '- Already built');
