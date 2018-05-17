@@ -77,6 +77,22 @@ describe('city.js', () => {
 
       g.nbUnits.should.be.equal(11);
     });
+
+    it('should update city\'s age of units', async () => {
+      g.listUnits_[0].age.should.be.equal(20);
+
+      g.checkUnit();
+
+      g.listUnits_[0].age.should.be.equal(21);
+
+      const max = g.listUnits_[0].timeToLive;
+      const nbU = g.nbUnits;
+      for (let i = 21; i <= max; i++) {
+        g.checkUnit();
+      }
+
+      g.nbUnits.should.be.below(nbU);
+    });
   });
 
   describe('Buy, sell, chop and offer resources', () => {

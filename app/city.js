@@ -112,6 +112,15 @@ class City {
     }
   }
 
+  checkUnit() {
+    this.listUnits_.forEach(element => {
+      element.birthday();
+      if (!element.isAlive()) {
+        this.listUnits_.splice(this.listUnits_.lastIndexOf(element));
+      }
+    });
+  }
+
   offeringCorn(nbCorn) {
     if (this.corn_ >= nbCorn && typeof nbCorn === 'number' &&
       nbCorn >= 0) {
