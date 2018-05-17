@@ -2,6 +2,7 @@ const EventEmitter = require('events');
 
 class Wonder {
   constructor(object) {
+    this.name_ = object.name;
     this.timeBuilding_ = object.timeBuild;
     this.costBuilding_ = object.costBuild;
     this.typeOfProductToBuild_ = object.typeBuild;
@@ -11,6 +12,7 @@ class Wonder {
     this.timeBetweenEarning_ = object.timeEarn;
     this.worldEvents = new EventEmitter();
     this.timeFactor_ = object.timeFactors;
+    this.isInit_ = false;
   }
 
   init() {
@@ -35,6 +37,15 @@ class Wonder {
         }
       }, this.timeFactor_ * this.timeBetweenEarning_);
     }, this.timeFactor_ * this.timeBuilding_);
+    this.isInit_ = true;
+  }
+
+  get name() {
+    return this.name_;
+  }
+
+  get isInit() {
+    return this.isInit_;
   }
 
   get timeBuilding() {
@@ -67,6 +78,14 @@ class Wonder {
 
   get timeFactor() {
     return this.timeFactor_;
+  }
+
+  showStatus() {
+    return this.name_ + ' : Time : ' + this.timeBuilding_ + ' | Cost : ' +
+      this.costBuilding_ + ' Coins + ' + this.nbOfProductToBuild_ + ' ' +
+      this.typeOfProductToBuild_ + '\nEarning : Time : ' +
+      this.timeBetweenEarning_ + ' | Product ' + this.nbOfProductEarned_ +
+      ' ' + this.typeOfProductEarned_;
   }
 
   endWorld() {

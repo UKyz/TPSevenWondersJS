@@ -17,6 +17,7 @@ describe('wonder.js', () => {
 
     before(() => {
       g = new Wonder({
+        name: 'WonderTest',
         timeBuild: 5,
         costBuild: 2,
         typeBuild: 'wood',
@@ -35,6 +36,7 @@ describe('wonder.js', () => {
     });
 
     it('should initialize the wonder', async () => {
+      g.name.should.be.equal('WonderTest');
       g.timeBuilding.should.be.equal(5);
       g.costBuilding.should.be.equal(2);
       g.typeOfProductionToBuild.should.be.equal('wood');
