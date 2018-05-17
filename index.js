@@ -93,7 +93,6 @@ const play2Offer = async (city, answer) => {
       .then(answers => {
         if (respondInTime) {
           city.offeringCorn(Number(answers.play2));
-          city.showStatus();
         }
       })
       .catch(err => {
@@ -116,7 +115,6 @@ const play2Offer = async (city, answer) => {
       .then(answers => {
         if (respondInTime) {
           city.offeringWood(Number(answers.play2));
-          city.showStatus();
         }
       })
       .catch(err => {
@@ -139,7 +137,6 @@ const play2Offer = async (city, answer) => {
       .then(answers => {
         if (respondInTime) {
           city.offeringGold(Number(answers.play2));
-          city.showStatus();
         }
       })
       .catch(err => {
@@ -219,22 +216,13 @@ const play1 = async (city, answer) => {
 };
 
 const gameLoop = async (city1, city2) => {
-  console.log('Welcome to our game ' + city1.name + ' and ' + city2.name + '.');
+  console.log('\nWelcome to our game ' + city1.user + ' and ' + city2.user +
+    '.');
 
   const game = true;
   let i = 0;
 
   while (game) {
-    respondInTime = true;
-    console.log('You have 20 seconds to play.');
-    const timeout1 = setTimeout(() => {
-      console.log(' 10 seconds left.');
-    }, 10000);
-    const timeout2 = setTimeout(() => {
-      console.log('Timeout, your play will not count.');
-      respondInTime = false;
-    }, 20000);
-
     let city;
     let message = 'Time to play ';
 
@@ -245,14 +233,23 @@ const gameLoop = async (city1, city2) => {
     }
 
     message += city.user;
+    console.log('\n================================');
     city.showStatus();
+    console.log('================================');
+
+    respondInTime = true;
+    console.log('You have 20 seconds to play.');
+    const timeout1 = setTimeout(() => {
+      console.log(' 10 seconds left.');
+    }, 10000);
+    const timeout2 = setTimeout(() => {
+      console.log('Timeout, your play will not count.');
+      respondInTime = false;
+    }, 20000);
 
     const listChoices = [
       '1- Buy, get or sell resources',
-      '2- Do an offering',
-      '4- Build a wonder',
-      '5- Prepare for an attack',
-      {name: '6- Do some stuff', disabled: 'Temporarily unavailable'}
+      '2- Do an offering'
     ];
 
     if (city.gold >= 20) {
@@ -261,6 +258,8 @@ const gameLoop = async (city1, city2) => {
       listChoices.push({name: '3- Form 10 units : 20 Coins', disabled: 'You' +
         ' need 20 Coins'});
     }
+
+    listChoices.push('4- Build a wonder', '5- Prepare for an attack');
 
     const questions = [
       {
@@ -344,7 +343,7 @@ const main = async () => {
   ];
   listWondersGold.sort();
 
-  console.log('Hey you two, do you wanna play ? Let\'s go !');
+  console.log('\nHey you two, do you wanna play ? Let\'s go !\n');
 
   const questions = [
     {key: 'nameUser1', msg: 'Player 1 what is your username? ',
@@ -380,9 +379,7 @@ const main = async () => {
   );
 
   city1.init();
-  city1.showStatus();
   city2.init();
-  city2.showStatus();
 
   gameLoop(city1, city2);
 };
