@@ -4,17 +4,17 @@
 For this project we had to implement a game based on Seven Wonders in node JS. In this game for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
 ## Contents
-  * [(Installation)][Installation]
-  * [(Gameplay)][Gameplay]
-    * [(The city)][City]
-    * [(The divinity)][Divinity]
-    * The unit
-    * The wonder
-    * The scientist
-  * Contribute
-    * Execute the tests
-    * Check the code styles
-  * Team
+  * [Installation][Installation]
+  * [Gameplay][Gameplay]
+    * [The city][City]
+    * [The divinity][Divinity]
+    * [The unit][Unit]
+    * [The wonder][Wonder]
+    * [The scientists][Scientists]
+  * [Contribute][Contribute]
+    * [Execute the tests][Tests]
+    * [Check the code style][CheckXo]
+  * [Team][Team]
 
 ## Install & Play
 
@@ -66,5 +66,15 @@ xo
 [sinon]: https://www.npmjs.com/package/sinon
 [chai-p]: https://www.npmjs.com/package/chai-as-promised
 [yarn]: https://github.com/yarnpkg/yarn
-[Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#install-&-play
+[Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#install--play
+[Gameplay]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#gameplay
+[City]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-city
+[Unit]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-unit
+[Scientists]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-scientists
+[Wonder]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-wonder
+[Divinity]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-divinity
+[Contribute]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contribute
+[Tests]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#execute-the-tests
+[CheckXo]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#check-the-code-style
+[Team]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#team
 
