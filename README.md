@@ -4,25 +4,25 @@
 For this project we had to implement a game based on Seven Wonders in node JS. In this game for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
 ## Contents
-  * Installation
-  * Gameplay
-    * The city
-    * The divinity
+  * [(Installation)][Installation]
+  * [(Gameplay)][Gameplay]
+    * [(The city)][City]
+    * [(The divinity)][Divinity]
     * The unit
     * The wonder
     * The scientist
-  * Execute the game
   * Contribute
     * Execute the tests
     * Check the code styles
   * Team
 
-## Install
+## Install and Play
 
 ```bash
 git clone https://github.com/UKyz/TPSevenWondersJS.git
 cd TPSevenWondersJS
 yarn install
+yarn start
 ```
 
 ## Gameplay
@@ -37,12 +37,6 @@ yarn install
   ### The scientist 
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
 
-## Execute the game
-  
-```bash
-node index.js
-```
-
 ## Contribute 
 ### Execute the tests
   This project is based on the BDD method. Every classes has a test file to test
@@ -51,7 +45,7 @@ node index.js
   For exemple to test the divinity's class : 
   
 ```bash
-mocha ./tests/divinity-test
+mocha
 ```
 
 ### Check the code style
@@ -72,4 +66,5 @@ xo
 [sinon]: https://www.npmjs.com/package/sinon
 [chai-p]: https://www.npmjs.com/package/chai-as-promised
 [yarn]: https://github.com/yarnpkg/yarn
+[Installation]:
 
