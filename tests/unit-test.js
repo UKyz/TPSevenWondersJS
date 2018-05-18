@@ -25,10 +25,21 @@ describe('unit.js', () => {
       g.timeToLive.should.be.above(19);
       g.timeToLive.should.be.below(81);
       g.isAlive().should.be.equal(true);
+      g.hurted.should.be.equal(false);
+      g.isInDefense().should.be.equal(true);
 
       g.birthday();
 
       g.age.should.be.equal(1);
+
+      g.gethurt();
+      g.hurted.should.be.equal(true);
+
+      g.eat();
+      g.hurted.should.be.equal(false);
+
+      g.inDefense(false);
+      g.isInDefense().should.be.equal(false);
     });
   });
 

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c8a26773-bd90-4484-898e-d9dc78198e9f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/city.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/city-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/city-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/unit.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/unit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit-test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,6 +18,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="divinity.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/divinity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-787">
+              <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="divinity-test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/divinity-test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-684">
+              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="city.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/city.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -37,16 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scientists.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scientists.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="303">
@@ -55,20 +63,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scientists-test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/scientists-test.js">
+      <file leaf-file-name="unit.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/unit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="80" column="3" selection-start-line="80" selection-start-column="3" selection-end-line="80" selection-end-column="3" />
+            <state relative-caret-position="211">
+              <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="unit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/unit.js">
+      <file leaf-file-name="unit-test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/unit-test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            <state relative-caret-position="243">
+              <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -99,9 +107,7 @@
         <option value="$PROJECT_DIR$/divinity.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/divinity.js" />
-        <option value="$PROJECT_DIR$/tests/unit-test.js" />
         <option value="$PROJECT_DIR$/tests/divinity-test.js" />
-        <option value="$PROJECT_DIR$/app/unit.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tests/wonder-test.js" />
@@ -111,6 +117,8 @@
         <option value="$PROJECT_DIR$/app/city.js" />
         <option value="$PROJECT_DIR$/tests/city-test.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/tests/unit-test.js" />
+        <option value="$PROJECT_DIR$/app/unit.js" />
       </list>
     </option>
   </component>
@@ -212,12 +220,12 @@
       <workItem from="1525377715100" duration="3703000" />
       <workItem from="1525443515682" duration="1012000" />
       <workItem from="1525523890894" duration="16252000" />
-      <workItem from="1525878766241" duration="137907000" />
+      <workItem from="1525878766241" duration="142386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162587000" />
+    <option name="totallyTimeSpent" value="167066000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -241,7 +249,7 @@
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32991454" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3564189" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3564189" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -399,13 +407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit-test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/wonder-test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -417,41 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-824">
           <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/divinity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/divinity-test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/scientists-test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="80" column="3" selection-start-line="80" selection-start-column="3" selection-end-line="80" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scientists.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -469,10 +435,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/scientists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/divinity-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-684">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/scientists-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1093">
+          <caret line="80" column="3" selection-start-line="80" selection-start-column="3" selection-end-line="80" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="275" column="62" selection-start-line="275" selection-start-column="62" selection-end-line="275" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/divinity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-787">
+          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/unit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
         </state>
       </provider>
     </entry>
