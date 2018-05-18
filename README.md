@@ -30,7 +30,8 @@ node index.js
 ```
 
 ## Execute the tests :
-  This project is based on the TDD method. Every classes has a test file to test if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's TDD is)][TDDWiki]
+  This project is based on the BDD method. Every classes has a test file to test
+   if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's TDD is)][TDDWiki]
   
   For exemple to test the divinity's class : 
   

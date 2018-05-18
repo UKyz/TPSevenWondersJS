@@ -831,9 +831,9 @@ shallow-clone@^1.0.0:
     kind-of "^5.0.0"
     mixin-object "^2.0.1"
 
-sinon@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-5.0.3.tgz#9950f1616187ff0cd7d75a60d66bc27fed569945"
+sinon@^5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-5.0.7.tgz#3bded6a73613ccc9e512e20246ced69a27c27dab"
   dependencies:
     "@sinonjs/formatio" "^2.0.0"
     diff "^3.1.0"

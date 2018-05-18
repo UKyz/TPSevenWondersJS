@@ -6,7 +6,7 @@ const enquirer = new Enquirer();
 
 enquirer.register('list', require('prompt-list'));
 
-// Const figlet = require('figlet');
+const figlet = require('figlet');
 
 const {City} = require('./app/city');
 const {Wonder} = require('./app/wonder');
@@ -160,14 +160,15 @@ const play2Wonder = async (city, answer) => {
 const play1 = async (city, answer) => {
   const listChoices = [];
   let messageQ = '';
+  const choiceOne = [
+    '1- Buy corn',
+    '2- Buy wood',
+    '3- Chop wood',
+    '4- Sell corn'
+  ];
 
   if (answer === '1- Buy, get or sell resources') {
-    listChoices.push(
-      '1- Buy corn',
-      '2- Buy wood',
-      '3- Chop wood',
-      '4- Sell corn'
-    );
+    listChoices.push(...choiceOne);
     messageQ = 'What do you want to buy?';
   } else if (answer === '2- Do an offering') {
     listChoices.push(
@@ -180,8 +181,10 @@ const play1 = async (city, answer) => {
     city.showWonderStatus();
     for (let i = 0; i < city.lenghtListWonders; i++) {
       if (city.listWonders_[i].isInit) {
-        listChoices.push({name: (i + 1) + '- ' + city.listWonders_[i].name,
-          disabled: 'Already built'});
+        listChoices.push({
+          name: (i + 1) + '- ' + city.listWonders_[i].name,
+          disabled: 'Already built'
+        });
       } else {
         listChoices.push((i + 1) + '- ' + city.listWonders_[i].name);
       }
@@ -215,37 +218,37 @@ const play1 = async (city, answer) => {
     });
 };
 
+function responseTime() {
+  respondInTime = true;
+  console.log('20s to play');
+  const timeout1 = setTimeout(() => {
+    console.log(' 10 seconds left.');
+  }, 10000);
+  const timeout2 = setTimeout(() => {
+    console.log('Timeout, your play will not count.');
+    respondInTime = false;
+  }, 20000);
+  return [timeout1, timeout2];
+}
+
 const gameLoop = async (city1, city2) => {
-  console.log('\nWelcome to our game ' + city1.user + ' and ' + city2.user +
-    '.');
+  console.log('\n');
+  console.log(`Welcome to our game ${city1.user} and ${city2.user}.`);
 
   const game = true;
   let i = 0;
 
   while (game) {
-    let city;
     let message = 'Time to play ';
 
-    if (i % 2 === 0) {
-      city = city1;
-    } else {
-      city = city2;
-    }
+    const city = (i % 2) ? city2 : city1;
 
     message += city.user;
     console.log('\n================================');
     city.showStatus();
     console.log('================================');
 
-    respondInTime = true;
-    console.log('You have 20 seconds to play.');
-    const timeout1 = setTimeout(() => {
-      console.log(' 10 seconds left.');
-    }, 10000);
-    const timeout2 = setTimeout(() => {
-      console.log('Timeout, your play will not count.');
-      respondInTime = false;
-    }, 20000);
+    const timeouts = responseTime();
 
     const listChoices = [
       '1- Buy, get or sell resources',
@@ -255,8 +258,10 @@ const gameLoop = async (city1, city2) => {
     if (city.gold >= 20 && city.corn >= 10) {
       listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
     } else {
-      listChoices.push({name: '3- Form 10 units : 20 Coins', disabled: 'You' +
-        ' need 20 Coins & 10 Corns'});
+      listChoices.push({
+        name: '3- Form 10 units : 20 Coins', disabled: 'You' +
+        ' need 20 Coins & 10 Corns'
+      });
     }
 
     listChoices.push('4- Build a wonder', '5- Prepare for an attack');
@@ -270,6 +275,7 @@ const gameLoop = async (city1, city2) => {
       }
     ];
 
+    /* eslint-disable-next-line no-await-in-loop */
     await enquirer.ask(questions)
       .then(async answers => {
         if (respondInTime) {
@@ -279,8 +285,7 @@ const gameLoop = async (city1, city2) => {
             await play1(city, answers.play);
           }
         }
-        clearTimeout(timeout1);
-        clearTimeout(timeout2);
+        timeouts.forEach(t => clearTimeout(t));
       })
       .catch(err => {
         console.log(err);
@@ -291,85 +296,138 @@ const gameLoop = async (city1, city2) => {
 };
 
 const main = async () => {
+
+  await new Promise(resolve => {
+    figlet('Hello World!!', (err, data) => {
+      if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+      }
+      console.log(data);
+      resolve();
+    });
+  });
+
   const listWondersCorn = [
-    {name: 'Champs1', timeBuild: 30, costBuild: 40, typeBuild: 'corn',
+    {
+      name: 'Champs1', timeBuild: 30, costBuild: 40, typeBuild: 'corn',
       nbBuild: 30, typeEarn: 'corn', nbEarn: 5, timeEarn: 20,
-      timeFactors: 1000},
-    {name: 'Champs2', timeBuild: 30, costBuild: 50, typeBuild: 'corn',
+      timeFactors: 1000
+    },
+    {
+      name: 'Champs2', timeBuild: 30, costBuild: 50, typeBuild: 'corn',
       nbBuild: 40, typeEarn: 'corn', nbEarn: 10, timeEarn: 20,
-      timeFactors: 1000},
-    {name: 'Champs3', timeBuild: 25, costBuild: 50, typeBuild: 'wood',
+      timeFactors: 1000
+    },
+    {
+      name: 'Champs3', timeBuild: 25, costBuild: 50, typeBuild: 'wood',
       nbBuild: 30, typeEarn: 'corn', nbEarn: 7, timeEarn: 20,
-      timeFactors: 1000}
+      timeFactors: 1000
+    }
   ];
   listWondersCorn.sort();
 
   const listWondersUnit = [
-    {name: 'Caserne1', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
+    {
+      name: 'Caserne1', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
       nbBuild: 30, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
-      timeFactors: 1000},
-    {name: 'Caserne2', timeBuild: 40, costBuild: 70, typeBuild: 'unit',
+      timeFactors: 1000
+    },
+    {
+      name: 'Caserne2', timeBuild: 40, costBuild: 70, typeBuild: 'unit',
       nbBuild: 15, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
-      timeFactors: 1000},
-    {name: 'Caserne3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
+      timeFactors: 1000
+    },
+    {
+      name: 'Caserne3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
       nbBuild: 20, typeEarn: 'unit', nbEarn: 7, timeEarn: 50,
-      timeFactors: 1000}
+      timeFactors: 1000
+    }
   ];
   listWondersUnit.sort();
 
   const listWondersWood = [
-    {name: 'Bucheron1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
+    {
+      name: 'Bucheron1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
       nbBuild: 30, typeEarn: 'wood', nbEarn: 5, timeEarn: 30,
-      timeFactors: 1000},
-    {name: 'Bucheron2', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
+      timeFactors: 1000
+    },
+    {
+      name: 'Bucheron2', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
       nbBuild: 40, typeEarn: 'wood', nbEarn: 8, timeEarn: 40,
-      timeFactors: 1000},
-    {name: 'Bucheron3', timeBuild: 20, costBuild: 30, typeBuild: 'wood',
+      timeFactors: 1000
+    },
+    {
+      name: 'Bucheron3', timeBuild: 20, costBuild: 30, typeBuild: 'wood',
       nbBuild: 20, typeEarn: 'wood', nbEarn: 2, timeEarn: 20,
-      timeFactors: 1000}
+      timeFactors: 1000
+    }
   ];
   listWondersWood.sort();
 
   const listWondersGold = [
-    {name: 'Banque1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
+    {
+      name: 'Banque1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
       nbBuild: 40, typeEarn: 'gold', nbEarn: 3, timeEarn: 40,
-      timeFactors: 1000},
-    {name: 'Banque2', timeBuild: 10, costBuild: 30, typeBuild: 'wood',
+      timeFactors: 1000
+    },
+    {
+      name: 'Banque2', timeBuild: 10, costBuild: 30, typeBuild: 'wood',
       nbBuild: 20, typeEarn: 'gold', nbEarn: 1, timeEarn: 30,
-      timeFactors: 1000},
-    {name: 'Banque3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
+      timeFactors: 1000
+    },
+    {
+      name: 'Banque3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
       nbBuild: 30, typeEarn: 'gold', nbEarn: 5, timeEarn: 55,
-      timeFactors: 1000}
+      timeFactors: 1000
+    }
   ];
   listWondersGold.sort();
 
   console.log('\nHey you two, do you wanna play ? Let\'s go !\n');
 
   const questions = [
-    {key: 'nameUser1', msg: 'Player 1 what is your username? ',
-      fn: 'prompt'},
-    {key: 'nameCity1', msg: 'Player 1 what is the name of your city? ',
-      fn: 'prompt'},
-    {key: 'nameDivinity1', msg: 'Player 1 what is the name of your divinity? ',
-      fn: 'prompt'},
-    {key: 'nameUser2', msg: 'Player 2 what is your username? ',
-      fn: 'prompt'},
-    {key: 'nameCity2', msg: 'Player 2 what is the name of your city? ',
-      fn: 'prompt'},
-    {key: 'nameDivinity2', msg: 'Player 2 what is the name of your divinity? ',
-      fn: 'prompt'}
+    {
+      key: 'nameUser1', msg: 'Player 1 what is your username? ',
+      fn: 'prompt'
+    },
+    {
+      key: 'nameCity1', msg: 'Player 1 what is the name of your city? ',
+      fn: 'prompt'
+    },
+    {
+      key: 'nameDivinity1', msg: 'Player 1 what is the name of your divinity? ',
+      fn: 'prompt'
+    },
+    {
+      key: 'nameUser2', msg: 'Player 2 what is your username? ',
+      fn: 'prompt'
+    },
+    {
+      key: 'nameCity2', msg: 'Player 2 what is the name of your city? ',
+      fn: 'prompt'
+    },
+    {
+      key: 'nameDivinity2', msg: 'Player 2 what is the name of your divinity? ',
+      fn: 'prompt'
+    }
   ];
 
   await nodeAsk(questions).then(
     answers => {
-      city1 = new City({user: answers.nameUser1, name: answers.nameCity1,
+      city1 = new City({
+        user: answers.nameUser1, name: answers.nameCity1,
         nameDivinity: answers.nameDivinity1, timeF: 1000,
         listW: [new Wonder(listWondersCorn[1]), new Wonder(listWondersUnit[1]),
-          new Wonder(listWondersWood[1]), new Wonder(listWondersGold[1])]});
-      city2 = new City({user: answers.nameUser2, name: answers.nameCity2,
+          new Wonder(listWondersWood[1]), new Wonder(listWondersGold[1])]
+      });
+      city2 = new City({
+        user: answers.nameUser2, name: answers.nameCity2,
         nameDivinity: answers.nameDivinity2, timeF: 1000,
         listW: [new Wonder(listWondersCorn[2]), new Wonder(listWondersUnit[2]),
-          new Wonder(listWondersWood[2]), new Wonder(listWondersGold[2])]});
+          new Wonder(listWondersWood[2]), new Wonder(listWondersGold[2])]
+      });
     }
   ).catch(
     ex => {
