@@ -16,7 +16,7 @@ For this project we had to implement a game based on Seven Wonders in node JS. I
     * Check the code styles
   * Team
 
-## Install and Play
+## Install & Play
 
 ```bash
 git clone https://github.com/UKyz/TPSevenWondersJS.git
@@ -66,5 +66,5 @@ xo
 [sinon]: https://www.npmjs.com/package/sinon
 [chai-p]: https://www.npmjs.com/package/chai-as-promised
 [yarn]: https://github.com/yarnpkg/yarn
-[Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contents
+[Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#install-&-play
 
