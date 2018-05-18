@@ -85,8 +85,20 @@ describe('city.js', () => {
 
       g.listUnits_[0].age.should.be.equal(21);
 
-      const max = g.listUnits_[0].timeToLive;
       const nbU = g.nbUnits;
+
+      g.gold.should.be.equal(100);
+      nbU.should.be.equal(11);
+      g.buyCorn(20);
+      g.gold.should.be.equal(80);
+      g.corn.should.be.equal(20);
+
+      g.formUnit(10);
+      g.gold.should.be.equal(60);
+      g.corn.should.be.equal(10);
+      g.nbUnits.should.be.equal(21);
+
+      const max = g.listUnits_[0].timeToLive;
       for (let i = 21; i <= max; i++) {
         g.checkUnit();
       }

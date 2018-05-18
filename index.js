@@ -252,11 +252,11 @@ const gameLoop = async (city1, city2) => {
       '2- Do an offering'
     ];
 
-    if (city.gold >= 20) {
-      listChoices.push('3- Form 10 units : 20 Coins');
+    if (city.gold >= 20 && city.corn >= 10) {
+      listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
     } else {
       listChoices.push({name: '3- Form 10 units : 20 Coins', disabled: 'You' +
-        ' need 20 Coins'});
+        ' need 20 Coins & 10 Corns'});
     }
 
     listChoices.push('4- Build a wonder', '5- Prepare for an attack');
@@ -273,7 +273,7 @@ const gameLoop = async (city1, city2) => {
     await enquirer.ask(questions)
       .then(async answers => {
         if (respondInTime) {
-          if (answers.play === '3- Form 10 units : 20 Coins') {
+          if (answers.play === '3- Form 10 units : 20 Coins & 10 Corns') {
             city.formUnit(10);
           } else {
             await play1(city, answers.play);

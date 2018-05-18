@@ -103,12 +103,13 @@ class City {
   }
 
   formUnit(nbUnit) {
-    if (this.gold_ >= (nbUnit * 2) && typeof nbUnit === 'number' &&
-      nbUnit >= 0) {
+    if (this.corn_ >= nbUnit && this.gold_ >= (nbUnit * 2) &&
+      typeof nbUnit === 'number' && nbUnit >= 0) {
       for (let i = 0; i < nbUnit; i++) {
         this.listUnits_.push(new Unit(16, this.unitDamage));
       }
       this.gold_ -= (2 * nbUnit);
+      this.corn_ -= nbUnit;
     }
   }
 
