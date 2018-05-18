@@ -28,13 +28,13 @@ yarn start
 ## Gameplay
   ### The city
   You will control a city, your city. You need to bring the city on the top to win the battle.
-  ### The divinty
+  ### The divinity
   You will have a divinity in your city, you will be able to offer resources to the divinity and wait if the divinity blesses you in return. But be careful, the divinity is capricious.
   ### The unit
   You will have, to defend your city, some units. There can be some hapinness birth or some tragedic death in the ranks of units. You will be able to form units and prepare them to fight for you.
   ### The wonder
   You will be able to build wonders to help you win the battle. Wonders are beautiful and also very helpful to grow faster the number of resources of your city.
-  ### The scientist 
+  ### The scientist
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
 
 ## Contribute 
