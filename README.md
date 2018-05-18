@@ -3,7 +3,21 @@
 
 For this project we had to implement a game based on Seven Wonders in node JS. In this game for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
-## Install : 
+## Contents
+  * Installation
+  * Gameplay
+    * The city
+    * The divinity
+    * The unit
+    * The wonder
+    * The scientist
+  * Execute the game
+  * Contribute
+    * Execute the tests
+    * Check the code styles
+  * Team
+
+## Install
 
 ```bash
 git clone https://github.com/UKyz/TPSevenWondersJS.git
@@ -11,7 +25,7 @@ cd TPSevenWondersJS
 yarn install
 ```
 
-## Gameplay :
+## Gameplay
   ### The city
   You will control a city, your city. You need to bring the city on the top to win the battle.
   ### The divinty
@@ -23,13 +37,14 @@ yarn install
   ### The scientist 
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
 
-## Execute the game :
+## Execute the game
   
 ```bash
 node index.js
 ```
 
-## Execute the tests :
+## Contribute 
+### Execute the tests
   This project is based on the BDD method. Every classes has a test file to test
    if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's TDD is)][TDDWiki]
   
@@ -39,19 +54,12 @@ node index.js
 mocha ./tests/divinity-test
 ```
 
-## Check the code style :
+### Check the code style
   This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo, if you want to check xo you just need to excute : 
   
 ```bash
 xo
 ```
-
-## Dependencies :
-  This project uses yarn to have a fast, reliable, and secure dependency management. [(See what's yarn is)][yarn]
-  * [chai][chai]
-  * [node-ask][node-ask]
-  * [sinon][sinon]
-  * [chai-p][chai-p]
 
 ## Team :
   * Couton Alexia
