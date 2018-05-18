@@ -34,7 +34,7 @@ yarn start
   You will have, to defend your city, some units. There can be some hapinness birth or some tragedic death in the ranks of units. You will be able to form units and prepare them to fight for you.
   ### The wonder
   You will be able to build wonders to help you win the battle. Wonders are beautiful and also very helpful to grow faster the number of resources of your city.
-  ### The scientist
+  ### The scientists
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
 
 ## Contribute 
