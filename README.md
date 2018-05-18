@@ -66,5 +66,5 @@ xo
 [sinon]: https://www.npmjs.com/package/sinon
 [chai-p]: https://www.npmjs.com/package/chai-as-promised
 [yarn]: https://github.com/yarnpkg/yarn
-[Installation]:
+[Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contents
 
