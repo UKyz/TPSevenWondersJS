@@ -76,5 +76,5 @@ xo
 [Contribute]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contribute
 [Tests]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#execute-the-tests
 [CheckXo]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#check-the-code-style
-[Team]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#team
+[Team]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#team-
 
