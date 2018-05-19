@@ -5,12 +5,13 @@ const {Unit} = require('../app/unit');
 class City {
   constructor(object) {
     this.name_ = object.name || 'UNKCITY';
-    this.user_ = object.user || 'Bob l\'éponge';
+    this.user_ = object.user || 'Ted Mosby Architecte';
     this.corn_ = 0;
     this.gold_ = 100;
     this.wood_ = 0;
+    this.victoryPoints_ = 0;
     this.divinity_ = new Divinity(object.nameDivinity, object.timeF);
-    this.unitDamage = 1;
+    this.unitDamage_ = 1;
     this.listUnits_ = [];
     this.listWonders_ = object.listW || [];
     this.worldEvents_ = new EventEmitter();
@@ -70,12 +71,24 @@ class City {
     return this.wood_;
   }
 
+  get victoryPoints() {
+    return this.victoryPoints_;
+  }
+
+  addVictoryPoints(nbPoints) {
+    this.victoryPoints_ += nbPoints;
+  }
+
   get divinity() {
     return this.divinity_;
   }
 
   get nbUnits() {
     return this.listUnits_.length;
+  }
+
+  get unitDamage() {
+    return this.unitDamage_;
   }
 
   get lenghtListWonders() {
@@ -118,6 +131,50 @@ class City {
       element.birthday();
       if (!element.isAlive()) {
         this.listUnits_.splice(this.listUnits_.lastIndexOf(element));
+      }
+    });
+  }
+
+  nbUnitsInDefense() {
+    let nbUnitsInDefense = 0;
+    this.listUnits_.forEach(element => {
+      if (element.isInDefense()) {
+        nbUnitsInDefense++;
+      }
+    });
+    return nbUnitsInDefense;
+  }
+
+  fightBegin(enemies, nbUnits) {
+    if (nbUnits <= this.nbUnitsInDefense() && typeof nbUnits === 'number' &&
+      nbUnits >= 0) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if ((nbUnits * this.unitDamage) > (enemies.nbUnits *
+            enemies.unitDamage)) {
+            this.addVictoryPoints(60);
+          } else {
+            enemies.addVictoryPoints(50);
+          }
+          this.fight(enemies);
+          resolve();
+        }, this.timeFactor_ * Math.floor(Math.random() * 21) + 20);
+      });
+    }
+  }
+
+  fight(enemies) {
+    this.listUnits_.forEach(unit => {
+      if (Math.random() > 0.5) {
+        unit.gethurt();
+      }
+      if (Math.random() > 0.75) {
+        this.listUnits_.splice(this.listUnits_.lastIndexOf(unit));
+      }
+    });
+    enemies.listUnits_.forEach(unit => {
+      if (Math.random() > 0.5) {
+        unit.gethurt();
       }
     });
   }
@@ -183,7 +240,7 @@ class City {
     console.log('Player : ' + this.user_ + ' | City : ' + this.name_ + ' |' +
       ' Divinity : ' + this.divinity_.name);
     console.log('nbUnits : ' + this.nbUnits + ' | nbWonders : ' +
-      this.nbWonders);
+      this.nbWonders + ' | nbPoints : ' + this.victoryPoints);
     console.log('Gold : ' + this.gold_ + ' | Corn : ' + this.corn_ + ' |' +
       ' Wood : ' + this.wood_);
   }
@@ -201,6 +258,10 @@ class City {
   endWorld() {
     clearInterval(this.gaiaInterval_);
     clearInterval(this.gaiaInterval2_);
+    if (this.listWonders_.length) {
+      this.listWonders_.forEach(w => w.endWorld());
+    }
+    this.divinity.endWorld();
   }
 }
 

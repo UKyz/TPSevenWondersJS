@@ -157,6 +157,30 @@ const play2Wonder = async (city, answer) => {
   }
 };
 
+const play2Fight = async (cityAttack, cityDefense) => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: `How many units do you want to use? (min: 0, max: ${cityAttack.nbUnitsInDefense()}).`
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        cityAttack.fightBegin(cityDefense, answers.play2);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  if (!respondInTime) {
+    console.log('Your action has not been played, you played too late.');
+  }
+};
+
 const play1 = async (city, answer) => {
   const listChoices = [];
   let messageQ = '';
@@ -241,11 +265,12 @@ const gameLoop = async (city1, city2) => {
   while (game) {
     let message = 'Time to play ';
 
-    const city = (i % 2) ? city2 : city1;
+    const cityPlaying = (i % 2) ? city2 : city1;
+    const cityNotPlaying = (i % 2) ? city1 : city2;
 
-    message += city.user;
+    message += cityPlaying.user;
     console.log('\n================================');
-    city.showStatus();
+    cityPlaying.showStatus();
     console.log('================================');
 
     const timeouts = responseTime();
@@ -255,7 +280,7 @@ const gameLoop = async (city1, city2) => {
       '2- Do an offering'
     ];
 
-    if (city.gold >= 20 && city.corn >= 10) {
+    if (cityPlaying.gold >= 20 && cityPlaying.corn >= 10) {
       listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
     } else {
       listChoices.push({
@@ -280,9 +305,12 @@ const gameLoop = async (city1, city2) => {
       .then(async answers => {
         if (respondInTime) {
           if (answers.play === '3- Form 10 units : 20 Coins & 10 Corns') {
-            city.formUnit(10);
+            cityPlaying.formUnit(10);
+          } else if (answers.play === '5- Prepare for an attack') {
+            console.log('Attack');
+            await play2Fight(cityPlaying, cityNotPlaying);
           } else {
-            await play1(city, answers.play);
+            await play1(cityPlaying, answers.play);
           }
         }
         timeouts.forEach(t => clearTimeout(t));
@@ -298,7 +326,7 @@ const gameLoop = async (city1, city2) => {
 const main = async () => {
 
   await new Promise(resolve => {
-    figlet('Hello World!!', (err, data) => {
+    figlet('TPSevenWonders', (err, data) => {
       if (err) {
         console.log('Something went wrong...');
         console.dir(err);
