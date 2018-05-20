@@ -82,6 +82,13 @@ class Scientists {
     }
   }
 
+  showStatus() {
+    console.log('Mathematician : ' + this.mathematicianLvl_ + ' / ' +
+      (5 - (this.mathematicianGlobalLvl - this.mathematicianLvl_)));
+    console.log('Physician : ' + this.physicianLvl_ + ' / ' +
+      (this.physicianLvl_ + 5 - this.physicianGlobalLvl));
+  }
+
   get mathematicianLvl() {
     return this.mathematicianLvl_;
   }

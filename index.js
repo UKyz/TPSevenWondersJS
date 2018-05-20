@@ -199,6 +199,89 @@ const play2Fight = async (cityAttack, cityDefense) => {
   }
 };
 
+const play2Science = async (cityPlaying, cityNotPlaying) => {
+  cityPlaying.scientists.showStatus();
+  const choiceOne = [];
+  if (cityPlaying.scientists.mathematicianGlobalLvl === 5) {
+    choiceOne.push({
+      name: '1- Mathematician', disabled: 'The Mathematician\'s' +
+      ' lvl is already maximal'
+    });
+  } else {
+    choiceOne.push('1- Mathematician');
+  }
+  if (cityPlaying.scientists.physicianGlobalLvl === 5) {
+    choiceOne.push({
+      name: '2- Physician', disabled: 'The Physician\'s' +
+      ' lvl is already maximal'
+    });
+  } else {
+    choiceOne.push('2- Physician');
+  }
+  if (cityPlaying.scientists.mathematicianGlobalLvl === 5) {
+    choiceOne.push({
+      name: '3- Philosopher', disabled: 'The Philosopher\'s' +
+      ' lvl is already maximal'
+    });
+  } else {
+    choiceOne.push('3- Philosopher');
+  }
+  if (cityPlaying.scientists.mathematicianGlobalLvl === 5) {
+    choiceOne.push({
+      name: '4- Economist', disabled: 'The Economist\'s' +
+      ' lvl is already maximal'
+    });
+  } else {
+    choiceOne.push('4- Economist');
+  }
+  if (cityPlaying.scientists.mathematicianGlobalLvl === 5) {
+    choiceOne.push({
+      name: '5- Architect', disabled: 'The Architect\'s' +
+      ' lvl is already maximal'
+    });
+  } else {
+    choiceOne.push('5- Architect');
+  }
+
+  const questions2 = [
+    {
+      type: 'list',
+      name: 'play2',
+      message: 'Which scientist do you want to level up?',
+      choices: choiceOne
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        if (answers.play2 === '1- Mathematician') {
+          cityPlaying.scientists.mathematicianLvlUp(true);
+          cityNotPlaying.scientists.mathematicianLvlUp(false);
+        } else if (answers.play2 === '2- Physician') {
+          cityPlaying.scientists.physicianLvlUp(true);
+          cityNotPlaying.scientists.physicianLvlUp(false);
+        } else if (answers.play2 === '3- Philosopher') {
+          cityPlaying.scientists.philosopherLvlUp(true);
+          cityNotPlaying.scientists.philosopherLvlUp(false);
+        } else if (answers.play2 === '4- Economist') {
+          cityPlaying.scientists.economistLvlUp(true);
+          cityNotPlaying.scientists.economistLvlUp(false);
+        } else if (answers.play2 === '5- Architect') {
+          cityPlaying.scientists.architectLvlUp(true);
+          cityNotPlaying.scientists.architectLvlUp(false);
+        }
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  if (!respondInTime) {
+    console.log('Your action has not been played, you played too late.');
+  }
+};
+
 const play1 = async (city, answer) => {
   const listChoices = [];
   let messageQ = '';
@@ -302,12 +385,13 @@ const gameLoop = async (city1, city2) => {
       listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
     } else {
       listChoices.push({
-        name: '3- Form 10 units : 20 Coins', disabled: 'You' +
+        name: '3- Form 10 units : 20 Coins & 10 Corns', disabled: 'You' +
         ' need 20 Coins & 10 Corns'
       });
     }
 
-    listChoices.push('4- Build a wonder', '5- Prepare for an attack');
+    listChoices.push('4- Build a wonder', '5- Prepare for an attack',
+      '6- Level up scientists');
 
     const questions = [
       {
@@ -325,8 +409,9 @@ const gameLoop = async (city1, city2) => {
           if (answers.play === '3- Form 10 units : 20 Coins & 10 Corns') {
             cityPlaying.formUnit(10);
           } else if (answers.play === '5- Prepare for an attack') {
-            console.log('Attack');
             await play2Fight(cityPlaying, cityNotPlaying);
+          } else if (answers.play === '6- Level up scientists') {
+            await play2Science(cityPlaying, cityNotPlaying);
           } else {
             await play1(cityPlaying, answers.play);
           }
@@ -341,9 +426,9 @@ const gameLoop = async (city1, city2) => {
   }
 };
 
-const main = async () => {
+const bigText = async text => {
   await new Promise(resolve => {
-    figlet('TPSevenWonders', (err, data) => {
+    figlet(text, (err, data) => {
       if (err) {
         console.log('Something went wrong...');
         console.dir(err);
@@ -353,6 +438,10 @@ const main = async () => {
       resolve();
     });
   });
+};
+
+const main = async () => {
+  await bigText('TPSevenWonders');
 
   const listWondersCorn = [
     {

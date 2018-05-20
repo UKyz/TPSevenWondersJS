@@ -1,6 +1,7 @@
 const EventEmitter = require('events');
 const {Divinity} = require('../app/divinity');
 const {Unit} = require('../app/unit');
+const {Scientists} = require('../app/scientists');
 
 class City {
   constructor(object) {
@@ -11,6 +12,7 @@ class City {
     this.wood_ = object.wood || 0;
     this.victoryPoints_ = 0;
     this.divinity_ = new Divinity(object.nameDivinity, object.timeF);
+    this.scientists_ = new Scientists(object.timeF);
     this.unitDamage_ = 1;
     this.listUnits_ = [];
     this.listWonders_ = object.listW || [];
@@ -81,6 +83,10 @@ class City {
 
   get divinity() {
     return this.divinity_;
+  }
+
+  get scientists() {
+    return this.scientists_;
   }
 
   get nbUnits() {
