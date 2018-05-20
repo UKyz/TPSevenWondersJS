@@ -15,38 +15,56 @@ let respondInTime;
 let city1;
 let city2;
 
-const play2Buy = async (city, answer) => {
-  if (answer === '1- Buy corn') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: 'How many? (min: 0, max: ' + city.gold + ')'
-      }
-    ];
+const play3Buy = async (city, answer, answer2) => {
+  const questions3 = [
+    {
+      type: 'input',
+      name: 'play3',
+      message: 'How many units do you want to send? (min: 0, max: ' +
+      city.nbUnitsInDefense() + ')'
+    }
+  ];
 
-    await enquirer.ask(questions2)
-      .then(answers => {
-        if (respondInTime) {
-          city.buyCorn(Number(answers.play2));
+  await enquirer.ask(questions3)
+    .then(answers => {
+      if (respondInTime) {
+        if (answer === '1- Buy corn') {
+          city.buyCorn(Number(answer2), Number(answers.play3));
+        } else if (answer === '2- Buy wood') {
+          city.buyWood(Number(answer2), Number(answers.play3));
         }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  if (!respondInTime) {
+    console.log('Your action has not been played, you played too late.');
+  }
+};
+
+const play2Buy = async (city, answer) => {
+  let messageQ = 'How many? (min: 0, max: ';
+  if (answer === '1- Buy corn') {
+    messageQ += city.gold + ')';
   } else if (answer === '2- Buy wood') {
+    messageQ += (city.gold / 2) + ')';
+  }
+
+  if (answer === '1- Buy corn' || answer === '2- Buy wood') {
     const questions2 = [
       {
         type: 'input',
         name: 'play2',
-        message: 'How many? (min: 0, max: ' + (city.gold / 2) + ')'
+        message: messageQ
       }
     ];
 
     await enquirer.ask(questions2)
-      .then(answers => {
+      .then(async answers => {
         if (respondInTime) {
-          city.buyWood(Number(answers.play2));
+          await play3Buy(city, answer, answers.play2);
         }
       })
       .catch(err => {
@@ -324,7 +342,6 @@ const gameLoop = async (city1, city2) => {
 };
 
 const main = async () => {
-
   await new Promise(resolve => {
     figlet('TPSevenWonders', (err, data) => {
       if (err) {

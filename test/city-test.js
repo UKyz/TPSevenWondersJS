@@ -55,6 +55,7 @@ describe.only('city.js', () => {
         user: 'Moi',
         nameDivinity: 'Divinity',
         timeF: 1,
+        corn: 100,
         listW: {}});
       g.init();
     });
@@ -86,7 +87,6 @@ describe.only('city.js', () => {
 
       const nbU = g.nbUnits;
 
-      g.buyCorn(20);
       const gold = g.gold;
       const corn = g.corn;
 
@@ -114,6 +114,7 @@ describe.only('city.js', () => {
         user: 'Moi',
         nameDivinity: 'Divinity',
         timeF: 2,
+        corn: 10,
         listW: {}
       });
       g2 = new City({
@@ -134,8 +135,6 @@ describe.only('city.js', () => {
     });
 
     it('should update city\'s number of victoryPoints', async () => {
-
-      g.buyCorn(10);
       g.formUnit(10);
 
       g.nbUnits.should.be.equal(20);
@@ -177,7 +176,6 @@ describe.only('city.js', () => {
         nameDivinity: 'Divinity',
         timeF: 1,
         listW: {}});
-      g.init();
       stub = sinon.stub(Math, 'random').returns(0.999);
     });
 
@@ -190,21 +188,31 @@ describe.only('city.js', () => {
       g.gold.should.be.equal(100);
       g.corn.should.be.equal(0);
 
-      g.buyCorn(50);
+      await g.buyCorn(50, 0);
       g.gold.should.be.equal(50);
-      g.corn.should.be.equal(50);
+      g.corn.should.be.below(51);
+      g.corn.should.be.above(0);
 
-      g.buyCorn(100);
+      const nbCorn = g.corn;
+      await g.buyCorn(100, 0);
       g.gold.should.be.equal(50);
-      g.corn.should.be.equal(50);
+      g.corn.should.be.equal(nbCorn);
 
-      g.buyCorn(-10);
+      await g.buyCorn(-10, 0);
       g.gold.should.be.equal(50);
-      g.corn.should.be.equal(50);
+      g.corn.should.be.equal(nbCorn);
 
-      g.buyCorn('10');
+      await g.buyCorn('10', 0);
       g.gold.should.be.equal(50);
-      g.corn.should.be.equal(50);
+      g.corn.should.be.equal(nbCorn);
+
+      await g.buyCorn(10, '0');
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(nbCorn);
+
+      await g.buyCorn(10, -10);
+      g.gold.should.be.equal(50);
+      g.corn.should.be.equal(nbCorn);
 
       g.sellCorn(30);
       g.gold.should.be.equal(80);
@@ -243,57 +251,68 @@ describe.only('city.js', () => {
       g.gold.should.be.equal(80);
       g.wood.should.be.equal(0);
 
-      g.buyWood(25);
+      await g.buyWood(25, 0);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.below(26);
+      g.wood.should.be.above(0);
 
-      g.buyWood(30);
+      let wood = g.wood;
+      await g.buyWood(30, 0);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.equal(wood);
 
-      g.buyWood(-10);
+      await g.buyWood(-10, 0);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.equal(wood);
 
-      g.buyWood('10');
+      await g.buyWood('10', 0);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.equal(wood);
+
+      await g.buyWood(10, '0');
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(wood);
+
+      await g.buyWood(10, -10);
+      g.gold.should.be.equal(30);
+      g.wood.should.be.equal(wood);
 
       g.offeringWood(-10);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.equal(wood);
 
       g.offeringWood('10');
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(25);
+      g.wood.should.be.equal(wood);
 
       g.offeringWood(20);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(5);
+      g.wood.should.be.equal(wood - 20);
 
       g.offeringWood(20);
       g.gold.should.be.equal(30);
-      g.wood.should.be.equal(5);
+      g.wood.should.be.equal(wood - 20);
 
+      wood = g.wood;
       await g.chopWood();
-      g.wood.should.be.above(15);
-      g.wood.should.be.below(25);
+      g.wood.should.be.above(wood + 10);
+      g.wood.should.be.below(wood + 20);
     });
 
     it('should update city\'s gold by offering', async () => {
-      g.gold.should.be.equal(30);
+      const gold = g.gold;
 
       g.offeringGold(-10);
-      g.gold.should.be.equal(30);
+      g.gold.should.be.equal(gold);
 
       g.offeringGold('10');
-      g.gold.should.be.equal(30);
+      g.gold.should.be.equal(gold);
 
       g.offeringGold(20);
-      g.gold.should.be.equal(10);
+      g.gold.should.be.equal(gold - 20);
 
       g.offeringGold(20);
-      g.gold.should.be.equal(10);
+      g.gold.should.be.equal(gold - 20);
     });
   });
 

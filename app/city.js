@@ -5,10 +5,10 @@ const {Unit} = require('../app/unit');
 class City {
   constructor(object) {
     this.name_ = object.name || 'UNKCITY';
-    this.user_ = object.user || 'Ted Mosby Architecte';
-    this.corn_ = 0;
-    this.gold_ = 100;
-    this.wood_ = 0;
+    this.user_ = object.user || 'Ted Mosby Architect';
+    this.corn_ = object.corn || 0;
+    this.gold_ = object.gold || 100;
+    this.wood_ = object.wood || 0;
     this.victoryPoints_ = 0;
     this.divinity_ = new Divinity(object.nameDivinity, object.timeF);
     this.unitDamage_ = 1;
@@ -158,7 +158,7 @@ class City {
           }
           this.fight(enemies);
           resolve();
-        }, this.timeFactor_ * Math.floor(Math.random() * 21) + 20);
+        }, (this.timeFactor_ * (Math.floor(Math.random() * 21) + 20)));
       });
     }
   }
@@ -203,11 +203,22 @@ class City {
     }
   }
 
-  buyCorn(nbCorn) {
+  buyCorn(nbCorn, nbUnits) {
     if (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
-      nbCorn >= 0) {
-      this.corn_ += nbCorn;
-      this.gold_ -= nbCorn;
+      nbCorn >= 0 && nbUnits <= this.nbUnitsInDefense() &&
+      typeof nbUnits === 'number' && nbUnits >= 0) {
+      console.log('buy corn with : ' + nbCorn + ' ' + nbUnits);
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (Math.random() < (2 / Math.PI) * Math.atan(nbUnits)) {
+            this.corn_ += nbCorn;
+          } else {
+            this.corn_ += Math.round(nbCorn * Math.random()) + 1;
+          }
+          this.gold_ -= nbCorn;
+          resolve();
+        }, (this.timeFactor_ * (Math.floor(Math.random() * 21) + 20)));
+      });
     }
   }
 
@@ -219,11 +230,21 @@ class City {
     }
   }
 
-  buyWood(nbWood) {
+  buyWood(nbWood, nbUnits) {
     if (this.gold_ >= (nbWood * 2) && typeof nbWood === 'number' &&
-      nbWood >= 0) {
-      this.wood_ += nbWood;
-      this.gold_ -= (nbWood * 2);
+      nbWood >= 0 && nbUnits <= this.nbUnitsInDefense() &&
+      typeof nbUnits === 'number' && nbUnits >= 0) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (Math.random() < (2 / Math.PI) * Math.atan(nbUnits)) {
+            this.wood_ += nbWood;
+          } else {
+            this.wood_ += Math.round(nbWood * Math.random()) + 1;
+          }
+          this.gold_ -= (nbWood * 2);
+          resolve();
+        }, (this.timeFactor_ * (Math.floor(Math.random() * 21) + 20)));
+      });
     }
   }
 
@@ -258,7 +279,7 @@ class City {
   endWorld() {
     clearInterval(this.gaiaInterval_);
     clearInterval(this.gaiaInterval2_);
-    if (this.listWonders_.length) {
+    if (this.listWonders_.length > 0) {
       this.listWonders_.forEach(w => w.endWorld());
     }
     this.divinity.endWorld();
