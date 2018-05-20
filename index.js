@@ -15,6 +15,11 @@ let respondInTime;
 let city1;
 let city2;
 
+let endSciencePlayer1 = false;
+let endSciencePlayer2 = false;
+let endVictoryPointsPlayer1 = false;
+let endVictoryPointsPlayer2 = false;
+
 const play3Buy = async (city, answer, answer2) => {
   const questions3 = [
     {
@@ -187,7 +192,7 @@ const play2Fight = async (cityAttack, cityDefense) => {
   await enquirer.ask(questions2)
     .then(answers => {
       if (respondInTime) {
-        cityAttack.fightBegin(cityDefense, answers.play2);
+        cityAttack.fightBegin(cityDefense, Number(answers.play2));
       }
     })
     .catch(err => {
@@ -356,14 +361,44 @@ function responseTime() {
   return [timeout1, timeout2];
 }
 
+function endGame(city1, city2, i) {
+  if (city1.scientists.nbLvl3 === 5 || city1.scientists.nbLvl4 === 4 ||
+    city1.scientists.nbLvl5 === 3) {
+    endSciencePlayer1 = true;
+    return true;
+  }
+  if (city2.scientists.nbLvl3 === 5 || city2.scientists.nbLvl4 === 4 ||
+    city2.scientists.nbLvl5 === 3) {
+    endSciencePlayer2 = true;
+    return true;
+  }
+  if (i >= 3) {
+    if (city1.victoryPoints > city2.victoryPoints) {
+      endVictoryPointsPlayer1 = true;
+      return true;
+    }
+    if (city1.victoryPoints < city2.victoryPoints) {
+      endVictoryPointsPlayer2 = true;
+      return true;
+    }
+    if (city1.gold > city2.gold) {
+      endVictoryPointsPlayer1 = true;
+      return true;
+    }
+    endVictoryPointsPlayer2 = true;
+    return true;
+  }
+  return false;
+}
+
 const gameLoop = async (city1, city2) => {
   console.log('\n');
   console.log(`Welcome to our game ${city1.user} and ${city2.user}.`);
 
-  const game = true;
+  let game = false;
   let i = 0;
 
-  while (game) {
+  while (!game) {
     let message = 'Time to play ';
 
     const cityPlaying = (i % 2) ? city2 : city1;
@@ -422,7 +457,7 @@ const gameLoop = async (city1, city2) => {
         console.log(err);
       });
 
-    i++;
+    game = endGame(city1, city2, i++);
   }
 };
 
@@ -438,6 +473,14 @@ const bigText = async text => {
       resolve();
     });
   });
+};
+
+const messageWin = async () => {
+  if (endSciencePlayer1 || endVictoryPointsPlayer1) {
+    await bigText(city1.user + ' wins');
+  } else if (endSciencePlayer2 || endVictoryPointsPlayer2) {
+    await bigText(city2.user + ' wins');
+  }
 };
 
 const main = async () => {
@@ -573,7 +616,10 @@ const main = async () => {
   city1.init();
   city2.init();
 
-  gameLoop(city1, city2);
+  await gameLoop(city1, city2);
+  city1.endWorld();
+  city2.endWorld();
+  await messageWin();
 };
 
 main();

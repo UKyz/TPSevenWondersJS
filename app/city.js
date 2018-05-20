@@ -32,14 +32,14 @@ class City {
         });
         this.listUnits_.push(new Unit(1, this.unitDamage, this.timeFactor_));
       }
-    }, this.timeFactor);
+    }, this.timeFactor_);
 
     this.gaiaInterval2_ = setInterval(() => {
       this.worldEvents.emit('growCorn', {
         corn: 1
       });
       this.corn_ += 10;
-    }, this.timeFactor * 20);
+    }, this.timeFactor_ * 20);
 
     this.divinity_.worldEvents.on('favor', favor => {
       this.corn_ += favor.corn;
@@ -94,6 +94,7 @@ class City {
   }
 
   get unitDamage() {
+    this.unitDamage_ = this.scientists_.unitsDamage;
     return this.unitDamage_;
   }
 
@@ -164,7 +165,7 @@ class City {
           }
           this.fight(enemies);
           resolve();
-        }, (this.timeFactor_ * (Math.floor(Math.random() * 21) + 20)));
+        }, (this.timeFactor_ * Math.floor(Math.random() * 21)));
       });
     }
   }

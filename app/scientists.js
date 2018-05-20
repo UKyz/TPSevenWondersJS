@@ -14,8 +14,12 @@ class Scientists {
     this.costCorn_ = 1;
     this.costWood_ = 1;
     this.lessWoodRequired_ = 0;
-    this.unitsDamage_ = 0;
+    this.unitsDamage_ = 1;
     this.timeFactor_ = timeFactors;
+
+    this.nbLvl3_ = 0;
+    this.nbLvl4_ = 0;
+    this.nbLvl5_ = 0;
   }
 
   mathematicianLvlUp(test) {
@@ -23,6 +27,13 @@ class Scientists {
       this.mathematicianGlobalLvl_++;
       if (test === true) {
         this.mathematicianLvl_++;
+        if (this.mathematicianLvl_ === 3) {
+          this.nbLvl3_++;
+        } else if (this.mathematicianLvl_ === 4) {
+          this.nbLvl4_++;
+        } else if (this.mathematicianLvl_ === 5) {
+          this.nbLvl5_++;
+        }
       }
     }
   }
@@ -32,6 +43,13 @@ class Scientists {
       this.physicianGlobalLvl_++;
       if (test === true) {
         this.physicianLvl_++;
+        if (this.physicianLvl_ === 3) {
+          this.nbLvl3_++;
+        } else if (this.physicianLvl_ === 4) {
+          this.nbLvl4_++;
+        } else if (this.physicianLvl_ === 5) {
+          this.nbLvl5_++;
+        }
         return new Promise(resolve => {
           setTimeout(() => {
             this.unitsDamage_ += 3;
@@ -47,6 +65,13 @@ class Scientists {
       this.philosopherGlobalLvl_++;
       if (test === true) {
         this.philosopherLvl_++;
+        if (this.philosopherLvl_ === 3) {
+          this.nbLvl3_++;
+        } else if (this.philosopherLvl_ === 4) {
+          this.nbLvl4_++;
+        } else if (this.philosopherLvl_ === 5) {
+          this.nbLvl5_++;
+        }
       }
     }
   }
@@ -56,6 +81,13 @@ class Scientists {
       this.economistGlobalLvl_++;
       if (test === true) {
         this.economistLvl_++;
+        if (this.economistLvl_ === 3) {
+          this.nbLvl3_++;
+        } else if (this.economistLvl_ === 4) {
+          this.nbLvl4_++;
+        } else if (this.economistLvl_ === 5) {
+          this.nbLvl5_++;
+        }
         return new Promise(resolve => {
           setTimeout(() => {
             this.costCorn_++;
@@ -72,6 +104,13 @@ class Scientists {
       this.architectGlobalLvl_++;
       if (test === true) {
         this.architectLvl_++;
+        if (this.architectLvl_ === 3) {
+          this.nbLvl3_++;
+        } else if (this.architectLvl_ === 4) {
+          this.nbLvl4_++;
+        } else if (this.architectLvl_ === 5) {
+          this.nbLvl5_++;
+        }
         return new Promise(resolve => {
           setTimeout(() => {
             this.lessWoodRequired_ += 2;
@@ -149,6 +188,22 @@ class Scientists {
 
   get lessWoodRequired() {
     return this.lessWoodRequired_;
+  }
+
+  get unitsDamage() {
+    return this.unitsDamage_;
+  }
+
+  get nbLvl3() {
+    return this.nbLvl3_;
+  }
+
+  get nbLvl4() {
+    return this.nbLvl4_;
+  }
+
+  get nbLvl5() {
+    return this.nbLvl5_;
   }
 }
 
