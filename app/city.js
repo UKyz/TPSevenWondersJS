@@ -207,7 +207,6 @@ class City {
     if (this.gold_ >= nbCorn && typeof nbCorn === 'number' &&
       nbCorn >= 0 && nbUnits <= this.nbUnitsInDefense() &&
       typeof nbUnits === 'number' && nbUnits >= 0) {
-      console.log('buy corn with : ' + nbCorn + ' ' + nbUnits);
       return new Promise(resolve => {
         setTimeout(() => {
           if (Math.random() < (2 / Math.PI) * Math.atan(nbUnits)) {

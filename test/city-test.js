@@ -190,7 +190,7 @@ describe.only('city.js', () => {
 
       await g.buyCorn(50, 0);
       g.gold.should.be.equal(50);
-      g.corn.should.be.below(51);
+      g.corn.should.be.below(52);
       g.corn.should.be.above(0);
 
       const nbCorn = g.corn;
@@ -216,35 +216,35 @@ describe.only('city.js', () => {
 
       g.sellCorn(30);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.sellCorn(30);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.sellCorn(-10);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.sellCorn('10');
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.offeringCorn(-10);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.offeringCorn('10');
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(20);
+      g.corn.should.be.equal(nbCorn - 30);
 
       g.offeringCorn(20);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(0);
+      g.corn.should.be.equal(nbCorn - 50);
 
       g.offeringCorn(20);
       g.gold.should.be.equal(80);
-      g.corn.should.be.equal(0);
+      g.corn.should.be.equal(nbCorn - 50);
     });
 
     it('should update city\'s gold and wood', async () => {
@@ -253,7 +253,7 @@ describe.only('city.js', () => {
 
       await g.buyWood(25, 0);
       g.gold.should.be.equal(30);
-      g.wood.should.be.below(26);
+      g.wood.should.be.below(27);
       g.wood.should.be.above(0);
 
       let wood = g.wood;
