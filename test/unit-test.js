@@ -40,6 +40,10 @@ describe('unit.js', () => {
 
       g.inDefense(false);
       g.isInDefense().should.be.equal(false);
+
+      await g.gethurt();
+      g.hurted.should.be.equal(true);
+      g.isAlive().should.be.equal(false);
     });
   });
 

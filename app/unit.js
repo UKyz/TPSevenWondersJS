@@ -1,10 +1,11 @@
 class Unit {
-  constructor(age, damage) {
+  constructor(age, damage, timeFactor) {
     this.age_ = age || 0;
     this.damage_ = damage || 1;
     this.timeToLive_ = Math.floor(Math.random() * 61) + 20;
     this.hurted_ = false;
     this.inDefense_ = true;
+    this.timeFactor_ = timeFactor || 1;
   }
 
   birthday() {
@@ -36,7 +37,15 @@ class Unit {
   }
 
   gethurt() {
-    this.hurted_ = true;
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (this.hurted_) {
+          this.age_ = this.timeToLive_ + 1;
+        }
+        resolve();
+      }, this.timeFactor_ * 100);
+      this.hurted_ = true;
+    });
   }
 
   eat() {

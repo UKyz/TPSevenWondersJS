@@ -22,7 +22,7 @@ class City {
 
   init() {
     for (let i = 0; i < 10; i++) {
-      this.listUnits_.push(new Unit(20, this.unitDamage));
+      this.listUnits_.push(new Unit(20, this.unitDamage, this.timeFactor_));
     }
 
     this.gaiaInterval_ = setInterval(() => {
@@ -30,7 +30,7 @@ class City {
         this.worldEvents.emit('bornUnit', {
           unit: 1
         });
-        this.listUnits_.push(new Unit());
+        this.listUnits_.push(new Unit(1, this.unitDamage, this.timeFactor_));
       }
     }, this.timeFactor);
 
@@ -125,7 +125,7 @@ class City {
     if (this.corn_ >= nbUnit && this.gold_ >= (nbUnit * 2) &&
       typeof nbUnit === 'number' && nbUnit >= 0) {
       for (let i = 0; i < nbUnit; i++) {
-        this.listUnits_.push(new Unit(16, this.unitDamage));
+        this.listUnits_.push(new Unit(16, this.unitDamage, this.timeFactor_));
       }
       this.gold_ -= (2 * nbUnit);
       this.corn_ -= nbUnit;
