@@ -86,7 +86,13 @@ class Scientists {
     console.log('Mathematician : ' + this.mathematicianLvl_ + ' / ' +
       (5 - (this.mathematicianGlobalLvl - this.mathematicianLvl_)));
     console.log('Physician : ' + this.physicianLvl_ + ' / ' +
-      (this.physicianLvl_ + 5 - this.physicianGlobalLvl));
+      (5 - (this.physicianGlobalLvl - this.physicianLvl_)));
+    console.log('Philosopher : ' + this.philosopherLvl_ + ' / ' +
+      (5 - (this.philosopherGlobalLvl - this.philosopherLvl_)));
+    console.log('Economist : ' + this.economistLvl_ + ' / ' +
+      (5 - (this.economistGlobalLvl - this.economistLvl_)));
+    console.log('Architect : ' + this.architectLvl_ + ' / ' +
+      (5 - (this.architectGlobalLvl - this.architectLvl_)));
   }
 
   get mathematicianLvl() {
