@@ -10,8 +10,8 @@ Feel free to contribute or discuss the game.
   * [Gameplay][Gameplay]
     * [The city][City]
     * [The divinity][Divinity]
-    * [The unit][Unit]
-    * [The wonder][Wonder]
+    * [The units][Unit]
+    * [The wonders][Wonder]
     * [The scientists][Scientists]
   * [Contribute][Contribute]
     * [Execute the tests][Tests]
@@ -28,18 +28,18 @@ yarn start
 ```
 
 ## Gameplay
- To goal of the game is to win over the rival city. You will have, at your service, a city full of resources, units, scientists, wonders and also a divinity to believe. As a master of the city, you will be able to do a lot of actions. First of all you will need some units to defend the land, because every moment the enemy can come over and attack your city. If they win, they will steal a lot of resources. But in the other hand you can also attack the rival whenever you want.
+ The goal of the game is to win over the rival city. You will have, at your service, a city full of resources, units, scientists, wonders and also a divinity to believe in. As a master of the city, you will be able to do a lot of actions. First of all, you will need some units to defend the land, because the enemy can come over at every moment and attack your city. If they win, they will steal a lot of resources. Despite that you can also attack the rival whenever you want.
  Then you will need resources to operate, you will be able to buy, chop and sell resources. You will manage your stocks of gold, corn and wood. Gold will be usefull for everything, you will need corn to heal your units most of the time, and finally wood will be precious to build wonders and help your city to grow faster.
- Every city has a divinity, and yours will have one too. You will need to be kind with your pray, because the divinity is a little bit capricious. By offering resources to the divinity you will be able to receive some favors or blessings. This can be helpfull in the tough moments.
- And finally your city will have some clever guys. The scientists need some gold to be more brilliant, but the scientists can be the key of winning. Indeed you can win by science if your clever guys are high evolved.
+ Every city has a divinity, so that you will be having one too. You will need to be kind with your pray, because the divinity is a little bit capricious. By offering resources to the divinity, you will be able to receive some favors or blessings. This can be helpfull in the tough moments.
+ And finally your city will have some clever guys. The scientists need some gold to be smarter, but the scientists can be the key of winning. Indeed you can win by science if your clever guys are high evolved.
  
   ### The city
-  You will control a city, your city. You need to bring the city on the top to win the battle.
+  You will control a city, your city. You need to bring the city at the top to win the battle.
   ### The divinity
-  You will have a divinity in your city, you will be able to offer resources to the divinity and wait if the divinity blesses you in return. But be careful, the divinity is capricious.
-  ### The unit
+  You will have a divinity in your city, you will be able to offer resources to the divinity. Wait and see if the divinity blesses you in return. But be careful, the divinity is capricious.
+  ### The units
   You will have, to defend your city, some units. There can be some hapinness birth or some tragedic death in the ranks of units. You will be able to form units and prepare them to fight for you.
-  ### The wonder
+  ### The wonders
   You will be able to build wonders to help you win the battle. Wonders are beautiful and also very helpful to grow faster the number of resources of your city.
   ### The scientists
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
@@ -47,7 +47,7 @@ yarn start
 
 ## Contribute 
 ### Execute the tests
-  This project is based on the BDD method. Every classes has a test file to test if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's BDD is)][BDDWiki]
+  This project is based on the BDD method. Every classes has a test file to test what's required to be executed. The test can also show a bogue when the class is modified. [(See what's BDD is)][BDDWiki]
   
   To test every classes : 
   
