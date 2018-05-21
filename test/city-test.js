@@ -102,6 +102,14 @@ describe.only('city.js', () => {
 
       g.nbUnits.should.be.below(nbU);
     });
+
+    it('should heal units', async () => {
+      g.formUnit(1);
+      g.listUnits_[0].gethurt();
+      g.listUnits_[0].hurted.should.be.equal(true);
+      await g.healUnits();
+      g.listUnits_[0].hurted.should.be.equal(false);
+    });
   });
 
   describe('Cities fighting', () => {

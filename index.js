@@ -307,7 +307,7 @@ const play1 = async (city, answer) => {
       '3- Gold'
     );
     messageQ = 'What do you want to offer?';
-  } else if (answer === '4- Build a wonder') {
+  } else if (answer === '5- Build a wonder') {
     city.showWonderStatus();
     for (let i = 0; i < city.lenghtListWonders; i++) {
       if (city.listWonders_[i].isInit) {
@@ -338,7 +338,7 @@ const play1 = async (city, answer) => {
           await play2Buy(city, answers.play);
         } else if (answer === '2- Do an offering') {
           await play2Offer(city, answers.play);
-        } else if (answer === '4- Build a wonder') {
+        } else if (answer === '5- Build a wonder') {
           await play2Wonder(city, answers.play);
         }
       }
@@ -350,12 +350,12 @@ const play1 = async (city, answer) => {
 
 function responseTime() {
   respondInTime = true;
-  console.log('20s to play');
+  console.log('20 seconds to play');
   const timeout1 = setTimeout(() => {
     console.log(' 10 seconds left.');
   }, 10000);
   const timeout2 = setTimeout(() => {
-    console.log('Timeout, your play will not count.');
+    console.log(' Timeout, your play will not count.');
     respondInTime = false;
   }, 20000);
   return [timeout1, timeout2];
@@ -425,8 +425,17 @@ const gameLoop = async (city1, city2) => {
       });
     }
 
-    listChoices.push('4- Build a wonder', '5- Prepare for an attack',
-      '6- Level up scientists');
+    if (cityPlaying.corn >= cityPlaying.nbUnits) {
+      listChoices.push(`4- Heal units : ${cityPlaying.nbUnits} Corns`);
+    } else {
+      listChoices.push({
+        name: `4- Heal units : ${cityPlaying.nbUnits} Corns`, disabled:
+        'You do not have any resources'
+      });
+    }
+
+    listChoices.push('5- Build a wonder', '6- Prepare for an attack', '7-' +
+      ' Level up scientists');
 
     const questions = [
       {
@@ -443,9 +452,9 @@ const gameLoop = async (city1, city2) => {
         if (respondInTime) {
           if (answers.play === '3- Form 10 units : 20 Coins & 10 Corns') {
             cityPlaying.formUnit(10);
-          } else if (answers.play === '5- Prepare for an attack') {
+          } else if (answers.play === '6- Prepare for an attack') {
             await play2Fight(cityPlaying, cityNotPlaying);
-          } else if (answers.play === '6- Level up scientists') {
+          } else if (answers.play === '7- Level up scientists') {
             await play2Science(cityPlaying, cityNotPlaying);
           } else {
             await play1(cityPlaying, answers.play);

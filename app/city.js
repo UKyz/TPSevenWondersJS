@@ -186,6 +186,20 @@ class City {
     });
   }
 
+  healUnits() {
+    if (this.corn_ >= this.nbUnits) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          this.listUnits_.forEach(unit => {
+            unit.eat();
+            this.corn_--;
+          });
+          resolve();
+        }, (this.timeFactor_ * 5));
+      });
+    }
+  }
+
   offeringCorn(nbCorn) {
     if (this.corn_ >= nbCorn && typeof nbCorn === 'number' &&
       nbCorn >= 0) {
