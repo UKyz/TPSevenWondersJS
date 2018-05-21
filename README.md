@@ -10,7 +10,7 @@ We had to implement a game based on Seven Wonders in node JS. This game is for t
 Feel free to contribute or discuss the game.
 
 ## Contents
-  * [Installation][Installation]
+  * [Install & Play][Installation]
   * [Gameplay][Gameplay]
     * [The city][City]
     * [The divinity][Divinity]
