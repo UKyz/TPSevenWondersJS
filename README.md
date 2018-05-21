@@ -3,6 +3,8 @@
 
 We had to implement a game based on Seven Wonders in node JS. This game is for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
+Feel free to contribute or discuss the game.
+
 ## Contents
   * [Installation][Installation]
   * [Gameplay][Gameplay]
