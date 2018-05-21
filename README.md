@@ -47,8 +47,10 @@ yarn start
   ### Screenshots
   
  <p align="center">
+ <div display: flex; flex-wrap: wrap;>
   <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot1">
   <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot2">
+  </div>
  </p>
   
 
