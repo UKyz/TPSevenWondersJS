@@ -26,6 +26,11 @@ yarn start
 ```
 
 ## Gameplay
+ To goal of the game is to win over the rival city. You will have, at your service, a city full of resources, units, scientists, wonders and also a divinity to believe. As a master of the city, you will be able to do a lot of actions. First of all you will need some units to defend the land, because every moment the enemy can come over and attack your city. If they win, they will steal a lot of resources. But in the other hand you can also attack the rival whenever you want.
+ Then you will need resources to operate, you will be able to buy, chop and sell resources. You will manage your stocks of gold, corn and wood. Gold will be usefull for everything, you will need corn to heal your units most of the time, and finally wood will be precious to build wonders and help your city to grow faster.
+ Every city has a divinity, and yours will have one too. You will need to be kind with your pray, because the divinity is a little bit capricious. By offering resources to the divinity you will be able to receive some favors or blessings. This can be helpfull in the tough moments.
+ And finally your city will have some clever guys. The scientists need some gold to be more brilliant, but the scientists can be the key of winning. Indeed you can win by science if your clever guys are high evolved.
+ 
   ### The city
   You will control a city, your city. You need to bring the city on the top to win the battle.
   ### The divinity
@@ -36,6 +41,7 @@ yarn start
   You will be able to build wonders to help you win the battle. Wonders are beautiful and also very helpful to grow faster the number of resources of your city.
   ### The scientists
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
+  
 
 ## Contribute 
 ### Execute the tests
