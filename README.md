@@ -44,6 +44,10 @@ yarn start
   ### The scientists
   You will have some scientists in your ranks, try to offer them some gold to see if they can help you and your city to be gretter. 
   
+  ### Screenshots
+  
+  ![Alt text](relative/path/to/img.jpg?raw=true "Screenshot1")
+  
 
 ## Contribute 
 ### Execute the tests
