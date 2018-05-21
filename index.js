@@ -429,7 +429,7 @@ function endGame(city1, city2, i) {
   return false;
 }
 
-const getListChoicesGameLoop = async cityPlaying => {
+const getListChoicesGameLoop = cityPlaying => {
   const listChoices = [
     '1- Buy, get or sell resources',
     '2- Do an offering'
@@ -474,12 +474,12 @@ const gameLoop = async (city1, city2) => {
     console.log('================================');
     const timeouts = responseTime();
 
-    const listChoices = await getListChoicesGameLoop(cityPlaying);
+    const listChoices = getListChoicesGameLoop(cityPlaying);
     const questions = [
       {
         type: 'list',
         name: 'play',
-        message: `${message} What\'s your play?`,
+        message: `${message} What's your play?`,
         choices: listChoices
       }
     ];
@@ -539,18 +539,18 @@ const main = async () => {
 
   const listWondersCorn = [
     {
-      name: 'Champs1', timeBuild: 30, costBuild: 40, typeBuild: 'corn',
-      nbBuild: 30, typeEarn: 'corn', nbEarn: 5, timeEarn: 20,
+      name: 'Bonta\'s field', timeBuild: 30, costBuild: 40,
+      typeBuild: 'corn', nbBuild: 30, typeEarn: 'corn', nbEarn: 5, timeEarn: 20,
       timeFactors: 1000
     },
     {
-      name: 'Champs2', timeBuild: 30, costBuild: 50, typeBuild: 'corn',
-      nbBuild: 40, typeEarn: 'corn', nbEarn: 10, timeEarn: 20,
-      timeFactors: 1000
+      name: 'The Corn\'s Factory', timeBuild: 30, costBuild: 50,
+      typeBuild: 'corn', nbBuild: 40, typeEarn: 'corn', nbEarn: 10,
+      timeEarn: 20, timeFactors: 1000
     },
     {
-      name: 'Champs3', timeBuild: 25, costBuild: 50, typeBuild: 'wood',
-      nbBuild: 30, typeEarn: 'corn', nbEarn: 7, timeEarn: 20,
+      name: 'Mister Potato\'s field', timeBuild: 25, costBuild: 50,
+      typeBuild: 'wood', nbBuild: 30, typeEarn: 'corn', nbEarn: 7, timeEarn: 20,
       timeFactors: 1000
     }
   ];
@@ -558,17 +558,17 @@ const main = async () => {
 
   const listWondersUnit = [
     {
-      name: 'Caserne1', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
+      name: 'US Army', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
       nbBuild: 30, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
       timeFactors: 1000
     },
     {
-      name: 'Caserne2', timeBuild: 40, costBuild: 70, typeBuild: 'unit',
+      name: 'The FBI', timeBuild: 40, costBuild: 70, typeBuild: 'unit',
       nbBuild: 15, typeEarn: 'unit', nbEarn: 5, timeEarn: 40,
       timeFactors: 1000
     },
     {
-      name: 'Caserne3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
+      name: 'Ninja\'s school', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
       nbBuild: 20, typeEarn: 'unit', nbEarn: 7, timeEarn: 50,
       timeFactors: 1000
     }
@@ -577,17 +577,17 @@ const main = async () => {
 
   const listWondersWood = [
     {
-      name: 'Bucheron1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
-      nbBuild: 30, typeEarn: 'wood', nbEarn: 5, timeEarn: 30,
+      name: 'The wood\'s Factory', timeBuild: 30, costBuild: 50,
+      typeBuild: 'wood', nbBuild: 30, typeEarn: 'wood', nbEarn: 5, timeEarn: 30,
       timeFactors: 1000
     },
     {
-      name: 'Bucheron2', timeBuild: 30, costBuild: 60, typeBuild: 'wood',
-      nbBuild: 40, typeEarn: 'wood', nbEarn: 8, timeEarn: 40,
+      name: 'Woodcutter\'s House', timeBuild: 30, costBuild: 60,
+      typeBuild: 'wood', nbBuild: 40, typeEarn: 'wood', nbEarn: 8, timeEarn: 40,
       timeFactors: 1000
     },
     {
-      name: 'Bucheron3', timeBuild: 20, costBuild: 30, typeBuild: 'wood',
+      name: 'The Canadians', timeBuild: 20, costBuild: 30, typeBuild: 'wood',
       nbBuild: 20, typeEarn: 'wood', nbEarn: 2, timeEarn: 20,
       timeFactors: 1000
     }
@@ -596,17 +596,17 @@ const main = async () => {
 
   const listWondersGold = [
     {
-      name: 'Banque1', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
+      name: 'The GNB building', timeBuild: 30, costBuild: 50, typeBuild: 'wood',
       nbBuild: 40, typeEarn: 'gold', nbEarn: 3, timeEarn: 40,
       timeFactors: 1000
     },
     {
-      name: 'Banque2', timeBuild: 10, costBuild: 30, typeBuild: 'wood',
-      nbBuild: 20, typeEarn: 'gold', nbEarn: 1, timeEarn: 30,
+      name: 'Gringotts Wizarding Bank', timeBuild: 10, costBuild: 30,
+      typeBuild: 'wood', nbBuild: 20, typeEarn: 'gold', nbEarn: 1, timeEarn: 30,
       timeFactors: 1000
     },
     {
-      name: 'Banque3', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
+      name: 'National Bank', timeBuild: 30, costBuild: 60, typeBuild: 'unit',
       nbBuild: 30, typeEarn: 'gold', nbEarn: 5, timeEarn: 55,
       timeFactors: 1000
     }
