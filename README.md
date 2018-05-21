@@ -1,5 +1,9 @@
 # Welcome in a practical work based on Seven Wonders! [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
+<p align="center">
+  <img src="http://victor-fauquembergue.fr/imagesGit/screenshot0">
+</p>
+
 
 We had to implement a game based on Seven Wonders in node JS. This game is for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
