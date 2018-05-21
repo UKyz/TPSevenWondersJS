@@ -46,7 +46,10 @@ yarn start
   
   ### Screenshots
   
-  ![Alt text](http://victor-fauquembergue.fr/imagesGit/screenshot1)
+ <p align="center">
+  <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot1">
+  <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot2">
+ </p>
   
 
 ## Contribute 
