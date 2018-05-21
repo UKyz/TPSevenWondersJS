@@ -1,7 +1,7 @@
 # Welcome in a practical work based on Seven Wonders! [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
 
-For this project we had to implement a game based on Seven Wonders in node JS. In this game for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
+We had to implement a game based on Seven Wonders in node JS. This game is for two players, they'll fight against each other and try to be the best city. In fact you need to be the best city, but you can reach the goal in two different ways. You'll be able to win with science or also with strenght. Come on and try this game based on Seven Wonders.
 
 ## Contents
   * [Installation][Installation]
@@ -39,33 +39,28 @@ yarn start
 
 ## Contribute 
 ### Execute the tests
-  This project is based on the BDD method. Every classes has a test file to test
-   if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's TDD is)][TDDWiki]
+  This project is based on the BDD method. Every classes has a test file to test if the class is good as the test requiere it. The test can also show a bogue when the class is modified. [(See what's BDD is)][BDDWiki]
   
-  For exemple to test the divinity's class : 
+  To test every classes : 
   
 ```bash
 mocha
 ```
 
 ### Check the code style
-  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo, if you want to check xo you just need to excute : 
+  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo [(see what's xo is)][xo], if you want to check xo you just need to execute : 
   
 ```bash
 xo
 ```
 
 ## Team :
-  * Couton Alexia
-  * Fauquembergue Victor
-  * Laguadec Julien
+  * Couton Alexia (Scientists)
+  * Fauquembergue Victor (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
+  * Lagadec Julien (Some ideas)
 
-[TDDWiki]: https://en.wikipedia.org/wiki/Test-driven_development#Test_structure
-[chai]: https://www.npmjs.com/package/chai
-[node-ask]: https://www.npmjs.com/package/node-ask
-[sinon]: https://www.npmjs.com/package/sinon
-[chai-p]: https://www.npmjs.com/package/chai-as-promised
-[yarn]: https://github.com/yarnpkg/yarn
+[BDDWiki]: https://en.wikipedia.org/wiki/Behavior-driven_development
+[xo]: https://github.com/xojs/xo
 [Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#install--play
 [Gameplay]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#gameplay
 [City]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-city
