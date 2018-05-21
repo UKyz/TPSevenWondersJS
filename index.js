@@ -12,6 +12,7 @@ const {Wonder} = require('./app/wonder');
 let respondInTime;
 let city1;
 let city2;
+const nbTurns = 3;
 
 let endSciencePlayer1 = false;
 let endSciencePlayer2 = false;
@@ -47,6 +48,46 @@ const play3Buy = async (city, answer, answer2) => {
   }
 };
 
+const play2BuyBuy = async (city, answer, messageQ) => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: messageQ
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(async answers => {
+      if (respondInTime) {
+        await play3Buy(city, answer, answers.play2);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+const play2BuySell = async city => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: `How many? (min: 0, max: ${city.corn})`
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        city.sellCorn(Number(answers.play2));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 const play2Buy = async (city, answer) => {
   let messageQ = 'How many? (min: 0, max: ';
   if (answer === '1- Buy corn') {
@@ -56,43 +97,11 @@ const play2Buy = async (city, answer) => {
   }
 
   if (answer === '1- Buy corn' || answer === '2- Buy wood') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: messageQ
-      }
-    ];
-
-    await enquirer.ask(questions2)
-      .then(async answers => {
-        if (respondInTime) {
-          await play3Buy(city, answer, answers.play2);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    await play2BuyBuy(city, answer, messageQ);
   } else if (answer === '3- Chop wood') {
     city.chopWood();
   } else if (answer === '4- Sell corn') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: `How many? (min: 0, max: ${city.corn})`
-      }
-    ];
-
-    await enquirer.ask(questions2)
-      .then(answers => {
-        if (respondInTime) {
-          city.sellCorn(Number(answers.play2));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    await play2BuySell(city);
   }
 
   if (!respondInTime) {
@@ -100,73 +109,81 @@ const play2Buy = async (city, answer) => {
   }
 };
 
+const play2OfferCorn = async city => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: `How many? (min: 0, max: ${city.corn})`
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        city.offeringCorn(Number(answers.play2));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+const play2OfferWood = async city => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: `How many? (min: 0, max: ${city.wood})`
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        city.offeringWood(Number(answers.play2));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+const play2OfferGold = async city => {
+  const questions2 = [
+    {
+      type: 'input',
+      name: 'play2',
+      message: `How many? (min: 0, max: ${city.gold})`
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        city.offeringGold(Number(answers.play2));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 const play2Offer = async (city, answer) => {
-  if (answer === '1- Corn') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: `How many? (min: 0, max: ${city.corn})`
-      }
-    ];
-
-    await enquirer.ask(questions2)
-      .then(answers => {
-        if (respondInTime) {
-          city.offeringCorn(Number(answers.play2));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    if (!respondInTime) {
-      console.log('Your action has not been played, you played too late.');
-    }
-  } else if (answer === '2- Wood') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: `How many? (min: 0, max: ${city.wood})`
-      }
-    ];
-
-    await enquirer.ask(questions2)
-      .then(answers => {
-        if (respondInTime) {
-          city.offeringWood(Number(answers.play2));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    if (!respondInTime) {
-      console.log('Your action has not been played, you played too late.');
-    }
-  } else if (answer === '3- Gold') {
-    const questions2 = [
-      {
-        type: 'input',
-        name: 'play2',
-        message: `How many? (min: 0, max: ${city.gold})`
-      }
-    ];
-
-    await enquirer.ask(questions2)
-      .then(answers => {
-        if (respondInTime) {
-          city.offeringGold(Number(answers.play2));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    if (!respondInTime) {
-      console.log('Your action has not been played, you played too late.');
-    }
+  switch (answer) {
+    case '1- Corn':
+      await play2OfferCorn(city);
+      break;
+    case '2- Wood':
+      await play2OfferWood(city);
+      break;
+    case '3- Gold':
+      await play2OfferGold(city);
+      break;
+    default:
+  }
+  if (!respondInTime) {
+    console.log('Your action has not been played, you played too late.');
   }
 };
 
@@ -192,6 +209,52 @@ const play2Fight = async (cityAttack, cityDefense) => {
     .then(answers => {
       if (respondInTime) {
         cityAttack.fightBegin(cityDefense, Number(answers.play2));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  if (!respondInTime) {
+    console.log('Your action has not been played, you played too late.');
+  }
+};
+
+const play2ScienceQ = async (cityPlaying, cityNotPlaying, choiceOne) => {
+  const questions2 = [
+    {
+      type: 'list',
+      name: 'play2',
+      message: 'Which scientist do you want to level up?',
+      choices: choiceOne
+    }
+  ];
+
+  await enquirer.ask(questions2)
+    .then(answers => {
+      if (respondInTime) {
+        switch (answers.play2) {
+          case '1- Mathematician':
+            cityPlaying.scientists.mathematicianLvlUp(true);
+            cityNotPlaying.scientists.mathematicianLvlUp(false);
+            break;
+          case '2- Physician':
+            cityPlaying.scientists.physicianLvlUp(true);
+            cityNotPlaying.scientists.physicianLvlUp(false);
+            break;
+          case '3- Philosopher':
+            cityPlaying.scientists.philosopherLvlUp(true);
+            cityNotPlaying.scientists.philosopherLvlUp(false);
+            break;
+          case '4- Economist':
+            cityPlaying.scientists.economistLvlUp(true);
+            cityNotPlaying.scientists.economistLvlUp(false);
+            break;
+          case '5- Architect':
+            cityPlaying.scientists.architectLvlUp(true);
+            cityNotPlaying.scientists.architectLvlUp(false);
+            break;
+          default:
+        }
       }
     })
     .catch(err => {
@@ -247,80 +310,10 @@ const play2Science = async (cityPlaying, cityNotPlaying) => {
     choiceOne.push('5- Architect');
   }
 
-  const questions2 = [
-    {
-      type: 'list',
-      name: 'play2',
-      message: 'Which scientist do you want to level up?',
-      choices: choiceOne
-    }
-  ];
-
-  await enquirer.ask(questions2)
-    .then(answers => {
-      if (respondInTime) {
-        if (answers.play2 === '1- Mathematician') {
-          cityPlaying.scientists.mathematicianLvlUp(true);
-          cityNotPlaying.scientists.mathematicianLvlUp(false);
-        } else if (answers.play2 === '2- Physician') {
-          cityPlaying.scientists.physicianLvlUp(true);
-          cityNotPlaying.scientists.physicianLvlUp(false);
-        } else if (answers.play2 === '3- Philosopher') {
-          cityPlaying.scientists.philosopherLvlUp(true);
-          cityNotPlaying.scientists.philosopherLvlUp(false);
-        } else if (answers.play2 === '4- Economist') {
-          cityPlaying.scientists.economistLvlUp(true);
-          cityNotPlaying.scientists.economistLvlUp(false);
-        } else if (answers.play2 === '5- Architect') {
-          cityPlaying.scientists.architectLvlUp(true);
-          cityNotPlaying.scientists.architectLvlUp(false);
-        }
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-
-  if (!respondInTime) {
-    console.log('Your action has not been played, you played too late.');
-  }
+  await play2ScienceQ(cityPlaying, cityNotPlaying, choiceOne);
 };
 
-const play1 = async (city, answer) => {
-  const listChoices = [];
-  let messageQ = '';
-  const choiceOne = [
-    '1- Buy corn',
-    '2- Buy wood',
-    '3- Chop wood',
-    '4- Sell corn'
-  ];
-
-  if (answer === '1- Buy, get or sell resources') {
-    listChoices.push(...choiceOne);
-    messageQ = 'What do you want to buy?';
-  } else if (answer === '2- Do an offering') {
-    listChoices.push(
-      '1- Corn',
-      '2- Wood',
-      '3- Gold'
-    );
-    messageQ = 'What do you want to offer?';
-  } else if (answer === '5- Build a wonder') {
-    city.showWonderStatus();
-    for (let i = 0; i < city.lenghtListWonders; i++) {
-      if (city.listWonders_[i].isInit) {
-        listChoices.push({
-          name: (i + 1) + '- ' + city.listWonders_[i].name,
-          disabled: 'Already built'
-        });
-      } else {
-        listChoices.push((i + 1) + '- ' + city.listWonders_[i].name);
-      }
-    }
-    messageQ = 'What do you want to build?';
-  }
-
+const play1Q = async (city, answer, messageQ, listChoices) => {
   const questions = [
     {
       type: 'list',
@@ -333,18 +326,64 @@ const play1 = async (city, answer) => {
   await enquirer.ask(questions)
     .then(async answers => {
       if (respondInTime) {
-        if (answer === '1- Buy, get or sell resources') {
-          await play2Buy(city, answers.play);
-        } else if (answer === '2- Do an offering') {
-          await play2Offer(city, answers.play);
-        } else if (answer === '5- Build a wonder') {
-          await play2Wonder(city, answers.play);
+        switch (answer) {
+          case '1- Buy, get or sell resources':
+            await play2Buy(city, answers.play);
+            break;
+          case '2- Do an offering':
+            await play2Offer(city, answers.play);
+            break;
+          case '5- Build a wonder':
+            await play2Wonder(city, answers.play);
+            break;
+          default:
         }
       }
     })
     .catch(err => {
       console.log(err);
     });
+};
+
+const play1 = async (city, answer) => {
+  const listChoices = [];
+  let messageQ = '';
+  const choiceOne = [
+    '1- Buy corn',
+    '2- Buy wood',
+    '3- Chop wood',
+    '4- Sell corn'
+  ];
+  const choiceTwo = [
+    '1- Corn',
+    '2- Wood',
+    '3- Gold'
+  ];
+  switch (answer) {
+    case '1- Buy, get or sell resources':
+      listChoices.push(...choiceOne);
+      messageQ = 'What do you want to buy?';
+      break;
+    case '2- Do an offering':
+      listChoices.push(...choiceTwo);
+      messageQ = 'What do you want to offer?';
+      break;
+    case '5- Build a wonder':
+      for (let i = 0; i < city.lenghtListWonders; i++) {
+        if (city.listWonders_[i].isInit) {
+          listChoices.push({
+            name: `${(i + 1)} - ${city.listWonders_[i].name}`,
+            disabled: 'Already built'
+          });
+        } else {
+          listChoices.push(`${(i + 1)} - ${city.listWonders_[i].name}`);
+        }
+      }
+      messageQ = 'What do you want to build?';
+      break;
+    default:
+  }
+  await play1Q(city, answer, messageQ, listChoices);
 };
 
 function responseTime() {
@@ -371,7 +410,7 @@ function endGame(city1, city2, i) {
     endSciencePlayer2 = true;
     return true;
   }
-  if (i >= 3) {
+  if (i >= nbTurns) {
     if (city1.victoryPoints > city2.victoryPoints) {
       endVictoryPointsPlayer1 = true;
       return true;
@@ -390,6 +429,34 @@ function endGame(city1, city2, i) {
   return false;
 }
 
+const getListChoicesGameLoop = async cityPlaying => {
+  const listChoices = [
+    '1- Buy, get or sell resources',
+    '2- Do an offering'
+  ];
+
+  if (cityPlaying.gold >= 20 && cityPlaying.corn >= 10) {
+    listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
+  } else {
+    listChoices.push({
+      name: '3- Form 10 units : 20 Coins & 10 Corns', disabled: 'You' +
+      ' need 20 Coins & 10 Corns'
+    });
+  }
+  if (cityPlaying.corn >= cityPlaying.nbUnits) {
+    listChoices.push(`4- Heal units : ${cityPlaying.nbUnits} Corns`);
+  } else {
+    listChoices.push({
+      name: `4- Heal units : ${cityPlaying.nbUnits} Corns`, disabled:
+        'You do not have any resources'
+    });
+  }
+  listChoices.push('5- Build a wonder', '6- Prepare for an attack', '7-' +
+    ' Level up scientists');
+
+  return listChoices;
+};
+
 const gameLoop = async (city1, city2) => {
   console.log('\n');
   console.log(`Welcome to our game ${city1.user} and ${city2.user}.`);
@@ -398,65 +465,41 @@ const gameLoop = async (city1, city2) => {
   let i = 0;
 
   while (!game) {
-    let message = 'Time to play ';
-
     const cityPlaying = (i % 2) ? city2 : city1;
     const cityNotPlaying = (i % 2) ? city1 : city2;
 
-    message += cityPlaying.user;
+    const message = `Time to play ${cityPlaying.user}.`;
     console.log('\n================================');
     cityPlaying.showStatus();
     console.log('================================');
-
     const timeouts = responseTime();
 
-    const listChoices = [
-      '1- Buy, get or sell resources',
-      '2- Do an offering'
-    ];
-
-    if (cityPlaying.gold >= 20 && cityPlaying.corn >= 10) {
-      listChoices.push('3- Form 10 units : 20 Coins & 10 Corns');
-    } else {
-      listChoices.push({
-        name: '3- Form 10 units : 20 Coins & 10 Corns', disabled: 'You' +
-        ' need 20 Coins & 10 Corns'
-      });
-    }
-
-    if (cityPlaying.corn >= cityPlaying.nbUnits) {
-      listChoices.push(`4- Heal units : ${cityPlaying.nbUnits} Corns`);
-    } else {
-      listChoices.push({
-        name: `4- Heal units : ${cityPlaying.nbUnits} Corns`, disabled:
-        'You do not have any resources'
-      });
-    }
-
-    listChoices.push('5- Build a wonder', '6- Prepare for an attack', '7-' +
-      ' Level up scientists');
-
+    const listChoices = await getListChoicesGameLoop(cityPlaying);
     const questions = [
       {
         type: 'list',
         name: 'play',
-        message: message + '. What\'s your play?',
+        message: `${message} What\'s your play?`,
         choices: listChoices
       }
     ];
-
     /* eslint-disable-next-line no-await-in-loop */
     await enquirer.ask(questions)
       .then(async answers => {
         if (respondInTime) {
-          if (answers.play === '3- Form 10 units : 20 Coins & 10 Corns') {
-            cityPlaying.formUnit(10);
-          } else if (answers.play === '6- Prepare for an attack') {
-            await play2Fight(cityPlaying, cityNotPlaying);
-          } else if (answers.play === '7- Level up scientists') {
-            await play2Science(cityPlaying, cityNotPlaying);
-          } else {
-            await play1(cityPlaying, answers.play);
+          switch (answers.play) {
+            case '3- Form 10 units : 20 Coins & 10 Corns':
+              cityPlaying.formUnit(10);
+              break;
+            case '6- Prepare for an attack':
+              await play2Fight(cityPlaying, cityNotPlaying);
+              break;
+            case '7- Level up scientists':
+              await play2Science(cityPlaying, cityNotPlaying);
+              break;
+            default:
+              await play1(cityPlaying, answers.play);
+              break;
           }
         }
         timeouts.forEach(t => clearTimeout(t));

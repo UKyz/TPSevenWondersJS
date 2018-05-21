@@ -12,7 +12,7 @@ const {Wonder} = require('../app/wonder');
 chai.use(chaiAsPromised);
 chai.should();
 
-describe.only('city.js', () => {
+describe('city.js', () => {
   describe('growCorn Event', () => {
     let g;
 
