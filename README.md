@@ -68,7 +68,7 @@ yarn start
 
 ## Contribute 
 ### Execute the tests
-  This project is based on the BDD method. Every classes has a test file to test what's required to be executed. The test can also show a bogue when the class is modified. [(See what's BDD is)][BDDWiki]
+  This project is based on the BDD method. Every classes has a test file to test what's required to be executed. The test can also show a bogue when the class is modified. [(See what BDD is)][BDDWiki]
   
   To test every classes : 
   
@@ -77,7 +77,7 @@ mocha
 ```
 
 ### Check the code style
-  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo [(See what's xo is)][xo], if you want to check xo you just need to execute : 
+  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo [(See what xo is)][xo], if you want to check xo you just need to execute : 
   
 ```bash
 xo
@@ -93,9 +93,9 @@ xo
 [Installation]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#install--play
 [Gameplay]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#gameplay
 [City]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-city
-[Unit]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-unit
+[Unit]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-units
 [Scientists]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-scientists
-[Wonder]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-wonder
+[Wonder]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-wonders
 [Divinity]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-divinity
 [Screenshots]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#screenshots
 [Contribute]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contribute
