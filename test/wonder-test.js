@@ -49,8 +49,8 @@ describe('wonder.js', () => {
 
     it('should earn new resources', async () => {
       await new Promise(resolve => {
-        g.worldEvents.on('wonderEarn', earn => {
-          earn.corn.should.be.equal(g.nbOfProductEarned);
+        g.worldEvents.on('wonderEarnCorn', earn => {
+          earn.should.be.equal(g.nbOfProductEarned);
           resolve(); // ? Quest ce c'est ?
         });
       });

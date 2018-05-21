@@ -41,14 +41,19 @@ class Scientists {
   physicianLvlUp(test) {
     if (this.physicianGlobalLvl_ < 5) {
       this.physicianGlobalLvl_++;
-      if (test === true) {
+      if (test) {
         this.physicianLvl_++;
-        if (this.physicianLvl_ === 3) {
-          this.nbLvl3_++;
-        } else if (this.physicianLvl_ === 4) {
-          this.nbLvl4_++;
-        } else if (this.physicianLvl_ === 5) {
-          this.nbLvl5_++;
+        switch (this.physicianLvl_) {
+          case 3:
+            this.nbLvl3_++;
+            break;
+          case 4:
+            this.nbLvl4_++;
+            break;
+          case 5:
+            this.nbLvl3_++;
+            break;
+          default:
         }
         return new Promise(resolve => {
           setTimeout(() => {
@@ -65,12 +70,17 @@ class Scientists {
       this.philosopherGlobalLvl_++;
       if (test === true) {
         this.philosopherLvl_++;
-        if (this.philosopherLvl_ === 3) {
-          this.nbLvl3_++;
-        } else if (this.philosopherLvl_ === 4) {
-          this.nbLvl4_++;
-        } else if (this.philosopherLvl_ === 5) {
-          this.nbLvl5_++;
+        switch (this.philosopherLvl_) {
+          case 3:
+            this.nbLvl3_++;
+            break;
+          case 4:
+            this.nbLvl4_++;
+            break;
+          case 5:
+            this.nbLvl3_++;
+            break;
+          default:
         }
       }
     }
@@ -81,12 +91,17 @@ class Scientists {
       this.economistGlobalLvl_++;
       if (test === true) {
         this.economistLvl_++;
-        if (this.economistLvl_ === 3) {
-          this.nbLvl3_++;
-        } else if (this.economistLvl_ === 4) {
-          this.nbLvl4_++;
-        } else if (this.economistLvl_ === 5) {
-          this.nbLvl5_++;
+        switch (this.economistLvl_) {
+          case 3:
+            this.nbLvl3_++;
+            break;
+          case 4:
+            this.nbLvl4_++;
+            break;
+          case 5:
+            this.nbLvl3_++;
+            break;
+          default:
         }
         return new Promise(resolve => {
           setTimeout(() => {
@@ -104,12 +119,17 @@ class Scientists {
       this.architectGlobalLvl_++;
       if (test === true) {
         this.architectLvl_++;
-        if (this.architectLvl_ === 3) {
-          this.nbLvl3_++;
-        } else if (this.architectLvl_ === 4) {
-          this.nbLvl4_++;
-        } else if (this.architectLvl_ === 5) {
-          this.nbLvl5_++;
+        switch (this.architectLvl_) {
+          case 3:
+            this.nbLvl3_++;
+            break;
+          case 4:
+            this.nbLvl4_++;
+            break;
+          case 5:
+            this.nbLvl3_++;
+            break;
+          default:
         }
         return new Promise(resolve => {
           setTimeout(() => {
@@ -122,16 +142,17 @@ class Scientists {
   }
 
   showStatus() {
-    console.log('Mathematician : ' + this.mathematicianLvl_ + ' / ' +
-      (5 - (this.mathematicianGlobalLvl - this.mathematicianLvl_)));
-    console.log('Physician : ' + this.physicianLvl_ + ' / ' +
-      (5 - (this.physicianGlobalLvl - this.physicianLvl_)));
-    console.log('Philosopher : ' + this.philosopherLvl_ + ' / ' +
-      (5 - (this.philosopherGlobalLvl - this.philosopherLvl_)));
-    console.log('Economist : ' + this.economistLvl_ + ' / ' +
-      (5 - (this.economistGlobalLvl - this.economistLvl_)));
-    console.log('Architect : ' + this.architectLvl_ + ' / ' +
-      (5 - (this.architectGlobalLvl - this.architectLvl_)));
+    console.log([`Mathematician : this.mathematicianLvl_  /`,
+      `${(5 - (this.mathematicianGlobalLvl - this.mathematicianLvl_))}`]
+      .join(' '));
+    console.log([`Physician : this.physicianLvl_ /`,
+      `${(5 - (this.physicianGlobalLvl - this.physicianLvl_))}`].join(' '));
+    console.log([`Philosopher : this.philosopherLvl_ /`,
+      `${(5 - (this.philosopherGlobalLvl - this.philosopherLvl_))}`].join(' '));
+    console.log([`Economist : this.economistLvl_  /`,
+      `${(5 - (this.economistGlobalLvl - this.economistLvl_))}`].join(' '));
+    console.log([`Architect : this.architectLvl_ /`,
+      `${(5 - (this.architectGlobalLvl - this.architectLvl_))}`].join(' '));
   }
 
   get mathematicianLvl() {

@@ -16,28 +16,26 @@ class Wonder {
   }
 
   init() {
+    this.isInit_ = true;
     setTimeout(() => {
-      this.gaiaInterval_ = setInterval(() => {
-        if (this.typeOfProductEarned_ === 'corn') {
-          this.worldEvents.emit('wonderEarn', {
-            corn: this.nbOfProductEarned_
-          });
-        } else if (this.typeOfProductEarned_ === 'gold') {
-          this.worldEvents.emit('wonderEarn', {
-            gold: this.nbOfProductEarned_
-          });
-        } else if (this.typeOfProductEarned_ === 'wood') {
-          this.worldEvents.emit('wonderEarn', {
-            wood: this.nbOfProductEarned_
-          });
-        } else if (this.typeOfProductEarned_ === 'unit') {
-          this.worldEvents.emit('wonderEarn', {
-            unit: this.nbOfProductEarned_
-          });
+      this.interval_ = setInterval(() => {
+        switch (this.typeOfProductEarned_) {
+          case 'corn':
+            this.worldEvents.emit('wonderEarnCorn', this.nbOfProductEarned_);
+            break;
+          case 'gold':
+            this.worldEvents.emit('wonderEarnGold', this.nbOfProductEarned_);
+            break;
+          case 'wood':
+            this.worldEvents.emit('wonderEarnWood', this.nbOfProductEarned_);
+            break;
+          case 'unit':
+            this.worldEvents.emit('wonderEarnUnit', this.nbOfProductEarned_);
+            break;
+          default:
         }
       }, this.timeFactor_ * this.timeBetweenEarning_);
     }, this.timeFactor_ * this.timeBuilding_);
-    this.isInit_ = true;
   }
 
   get name() {
@@ -89,7 +87,7 @@ class Wonder {
   }
 
   endWorld() {
-    clearInterval(this.gaiaInterval_);
+    clearInterval(this.interval_);
   }
 }
 

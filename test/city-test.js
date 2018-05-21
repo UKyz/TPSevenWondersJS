@@ -336,12 +336,12 @@ describe.only('city.js', () => {
         listW: [
           new Wonder({
             name: 'Test1', timeBuild: 1, costBuild: 60,
-            typeBuild: 'wood', nbBuild: 30, typeEarn: 'unit', nbEarn: 5,
+            typeBuild: 'gold', nbBuild: 30, typeEarn: 'wood', nbEarn: 5,
             timeEarn: 1, timeFactors: 1
           }),
           new Wonder({
             name: 'Test2', timeBuild: 1, costBuild: 70,
-            typeBuild: 'unit', nbBuild: 15, typeEarn: 'unit', nbEarn: 5,
+            typeBuild: 'gold', nbBuild: 15, typeEarn: 'unit', nbEarn: 5,
             timeEarn: 1, timeFactors: 1
           })
         ]
@@ -359,8 +359,19 @@ describe.only('city.js', () => {
       g.nbWonders.should.be.equal(0);
       g.lenghtListWonders.should.be.equal(2);
 
-      g.listWonders_[0].init();
+      g.buildWonder(0);
       g.nbWonders.should.be.equal(1);
+    });
+
+    it('should have earn resources from the wonder', async () => {
+      const wood = g.wood;
+      await new Promise(resolve => {
+        g.listWonders_[0].worldEvents.on('wonderEarnWood', retribution => {
+          retribution.should.be.equal(5);
+          resolve();
+        });
+      });
+      g.wood.should.be.equal(wood + 5);
     });
   });
 });

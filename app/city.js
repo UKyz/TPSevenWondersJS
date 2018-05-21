@@ -107,18 +107,36 @@ class City {
   }
 
   get nbWonders() {
-    let nbInit = 0;
-    for (let i = 0; i < this.listWonders_.length; i++) {
-      if (this.listWonders_[i].isInit) {
-        nbInit++;
-      }
+    if (this.listWonders_.length > 0) {
+      return this.listWonders_.filter(wonder => wonder.isInit).length;
     }
-    return nbInit;
+    return 0;
   }
 
   wonder(index) {
     if (index === 'number' && index >= 0 && index < this.nbWonders) {
       return this.listWonders_[index];
+    }
+  }
+
+  buildWonder(index) {
+    if (typeof index === 'number' && index >= 0 &&
+      index < this.listWonders_.length) {
+      this.listWonders_[index].init();
+      this.listWonders_[index].worldEvents.on('wonderEarnCorn', event => {
+        this.corn_ += event;
+      });
+      this.listWonders_[index].worldEvents.on('wonderEarnWood', event => {
+        this.wood_ += event;
+      });
+      this.listWonders_[index].worldEvents.on('wonderEarnGold', event => {
+        this.gold_ += event;
+      });
+      this.listWonders_[index].worldEvents.on('wonderEarnCorn', event => {
+        for (let i = 0; i < event; i++) {
+          this.listUnits_.push(new Unit(16, this.unitDamage, this.timeFactor_));
+        }
+      });
     }
   }
 
@@ -143,13 +161,7 @@ class City {
   }
 
   nbUnitsInDefense() {
-    let nbUnitsInDefense = 0;
-    this.listUnits_.forEach(element => {
-      if (element.isInDefense()) {
-        nbUnitsInDefense++;
-      }
-    });
-    return nbUnitsInDefense;
+    return this.listUnits_.filter(unit => unit.isInDefense()).length;
   }
 
   fightBegin(enemies, nbUnits) {
@@ -278,20 +290,20 @@ class City {
   }
 
   showStatus() {
-    console.log('Player : ' + this.user_ + ' | City : ' + this.name_ + ' |' +
-      ' Divinity : ' + this.divinity_.name);
-    console.log('nbUnits : ' + this.nbUnits + ' | nbWonders : ' +
-      this.nbWonders + ' | nbPoints : ' + this.victoryPoints);
-    console.log('Gold : ' + this.gold_ + ' | Corn : ' + this.corn_ + ' |' +
-      ' Wood : ' + this.wood_);
+    console.log([`Player : ${this.user_} | City : ${this.name_} | Divinity : `,
+      `${this.divinity_.name}`].join(' '));
+    console.log([`nbUnits : ${this.nbUnits} | nbWonders : ${this.nbWonders}`,
+      `| nbPoints : ${this.victoryPoints}`].join(' '));
+    console.log([`Gold : ${this.gold_} | Corn : ${this.corn_}`,
+      `| Wood : ${this.wood_}`].join(' '));
   }
 
   showWonderStatus() {
     for (let i = 0; i < this.listWonders_.length; i++) {
       if (this.listWonders_[i].isInit) {
-        console.log((i + 1) + '- ' + this.listWonders_[i].showStatus());
+        console.log(`${(i + 1)} ${this.listWonders_[i].showStatus()}`);
       } else {
-        console.log((i + 1) + '- Already built');
+        console.log(`${(i + 1)} - Already built`);
       }
     }
   }

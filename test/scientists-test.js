@@ -88,7 +88,7 @@ describe('scientists.js', () => {
       g.costCorn.should.be.equal(2);
       g.costWood.should.be.equal(2);
       g.lessWoodRequired.should.be.equal(2);
-      g.unitsDamage_.should.be.equal(3);
+      g.unitsDamage_.should.be.equal(4);
 
       await g.architectLvlUp(true);
       g.lessWoodRequired.should.be.equal(4);

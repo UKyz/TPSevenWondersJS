@@ -3,9 +3,7 @@ const nodeAsk = require('node-ask').ask;
 const Enquirer = require('enquirer');
 
 const enquirer = new Enquirer();
-
 enquirer.register('list', require('prompt-list'));
-
 const figlet = require('figlet');
 
 const {City} = require('./app/city');
@@ -25,8 +23,8 @@ const play3Buy = async (city, answer, answer2) => {
     {
       type: 'input',
       name: 'play3',
-      message: 'How many units do you want to send? (min: 0, max: ' +
-      city.nbUnitsInDefense() + ')'
+      message: [`How many units do you want to send?`,
+        `(min: 0, max ${city.nbUnitsInDefense()})`].join(' ')
     }
   ];
 
@@ -52,9 +50,9 @@ const play3Buy = async (city, answer, answer2) => {
 const play2Buy = async (city, answer) => {
   let messageQ = 'How many? (min: 0, max: ';
   if (answer === '1- Buy corn') {
-    messageQ += city.gold + ')';
+    messageQ += `${city.gold} )`;
   } else if (answer === '2- Buy wood') {
-    messageQ += (city.gold / 2) + ')';
+    messageQ += `${(city.gold / 2)} )`;
   }
 
   if (answer === '1- Buy corn' || answer === '2- Buy wood') {
@@ -82,7 +80,7 @@ const play2Buy = async (city, answer) => {
       {
         type: 'input',
         name: 'play2',
-        message: 'How many? (min: 0, max: ' + city.corn + ')'
+        message: `How many? (min: 0, max: ${city.corn})`
       }
     ];
 
@@ -108,7 +106,7 @@ const play2Offer = async (city, answer) => {
       {
         type: 'input',
         name: 'play2',
-        message: 'How many? (min: 0, max: ' + city.corn + ')'
+        message: `How many? (min: 0, max: ${city.corn})`
       }
     ];
 
@@ -130,7 +128,7 @@ const play2Offer = async (city, answer) => {
       {
         type: 'input',
         name: 'play2',
-        message: 'How many? (min: 0, max: ' + city.wood + ')'
+        message: `How many? (min: 0, max: ${city.wood})`
       }
     ];
 
@@ -152,7 +150,7 @@ const play2Offer = async (city, answer) => {
       {
         type: 'input',
         name: 'play2',
-        message: 'How many? (min: 0, max: ' + city.gold + ')'
+        message: `How many? (min: 0, max: ${city.gold})`
       }
     ];
 
@@ -174,8 +172,8 @@ const play2Offer = async (city, answer) => {
 
 const play2Wonder = async (city, answer) => {
   for (let i = 0; i < city.lenghtListWonders; i++) {
-    if ((i + 1) + '- ' + city.listWonders_[i].name === answer) {
-      city.listWonders_[i].init();
+    if (`${(i + 1)} - ${city.listWonders_[i].name}` === answer) {
+      city.buildWonder(i);
     }
   }
 };
@@ -185,7 +183,8 @@ const play2Fight = async (cityAttack, cityDefense) => {
     {
       type: 'input',
       name: 'play2',
-      message: `How many units do you want to use? (min: 0, max: ${cityAttack.nbUnitsInDefense()}).`
+      message: [`How many units do you want to use?`,
+        `(min: 0, max: ${cityAttack.nbUnitsInDefense()}).`].join(' ')
     }
   ];
 
@@ -486,9 +485,9 @@ const bigText = async text => {
 
 const messageWin = async () => {
   if (endSciencePlayer1 || endVictoryPointsPlayer1) {
-    await bigText(city1.user + ' wins');
+    await bigText(`${city1.user} wins`);
   } else if (endSciencePlayer2 || endVictoryPointsPlayer2) {
-    await bigText(city2.user + ' wins');
+    await bigText(`${city2.user} wins`);
   }
 };
 
