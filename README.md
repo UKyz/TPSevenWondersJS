@@ -13,6 +13,7 @@ Feel free to contribute or discuss the game.
     * [The units][Unit]
     * [The wonders][Wonder]
     * [The scientists][Scientists]
+    * [Screenshots][Screenshots]
   * [Contribute][Contribute]
     * [Execute the tests][Tests]
     * [Check the code style][CheckXo]
@@ -47,10 +48,10 @@ yarn start
   ### Screenshots
   
  <p align="center">
- <div display: flex; flex-wrap: wrap;>
-  <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot1">
-  <img width="460" height="300" src="http://victor-fauquembergue.fr/imagesGit/screenshot2">
-  </div>
+  <img width="356" height="200" src="http://victor-fauquembergue.fr/imagesGit/screenshot1">
+  <img width="356" height="200" src="http://victor-fauquembergue.fr/imagesGit/screenshot2">
+  <img width="356" height="200" src="http://victor-fauquembergue.fr/imagesGit/screenshot3">
+  <img width="356" height="200" src="http://victor-fauquembergue.fr/imagesGit/screenshot4">
  </p>
   
 
@@ -85,6 +86,7 @@ xo
 [Scientists]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-scientists
 [Wonder]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-wonder
 [Divinity]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#the-divinity
+[Screenshots]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#screenshots
 [Contribute]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#contribute
 [Tests]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#execute-the-tests
 [CheckXo]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#check-the-code-style
