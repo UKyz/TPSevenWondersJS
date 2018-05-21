@@ -18,7 +18,7 @@ We had to implement a game based on Seven Wonders in node JS. This game is for t
 
 ## Install & Play
 
-```bash
+```
 git clone https://github.com/UKyz/TPSevenWondersJS.git
 cd TPSevenWondersJS
 yarn install
@@ -48,7 +48,7 @@ mocha
 ```
 
 ### Check the code style
-  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo [(see what's xo is)][xo], if you want to check xo you just need to execute : 
+  This project uses the framework xojs. xojs is a ESLint wrapper that enforce strict and readable code. Everything works fine with xo [(See what's xo is)][xo], if you want to check xo you just need to execute : 
   
 ```bash
 xo
