@@ -12,7 +12,7 @@ const {Wonder} = require('./app/wonder');
 let respondInTime;
 let city1;
 let city2;
-const nbTurns = 3;
+const nbTurns = 100;
 
 let endSciencePlayer1 = false;
 let endSciencePlayer2 = false;
