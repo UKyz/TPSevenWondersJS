@@ -83,7 +83,7 @@ mocha
 xo
 ```
 
-## Team :
+## Credits
   * Couton Alexia (Scientists)
   * Fauquembergue Victor (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
   * Lagadec Julien (Some ideas)
