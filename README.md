@@ -84,7 +84,7 @@ xo
 ```
 
 ## Credits
-  * Couton Alexia (Scientists)
+  * [Couton Alexia][Alexia] : (Scientists)
   * Fauquembergue Victor (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
   * Lagadec Julien (Some ideas)
 
@@ -102,4 +102,5 @@ xo
 [Tests]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#execute-the-tests
 [CheckXo]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#check-the-code-style
 [Team]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#team-
+[Alexia]: https://github.com/Alexia14
 
