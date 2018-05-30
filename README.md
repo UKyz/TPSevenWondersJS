@@ -85,7 +85,7 @@ xo
 
 ## Credits
   * [Couton Alexia][Alexia] : (Scientists)
-  * Fauquembergue Victor (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
+  * [Fauquembergue Victor][Me] (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
   * Lagadec Julien (Some ideas)
 
 [BDDWiki]: https://en.wikipedia.org/wiki/Behavior-driven_development
@@ -103,4 +103,5 @@ xo
 [CheckXo]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#check-the-code-style
 [Team]: https://github.com/UKyz/TPSevenWondersJS/blob/master/README.md#team-
 [Alexia]: https://github.com/Alexia14
+[Me]: https://github.com/UKyz
 
