@@ -84,8 +84,8 @@ xo
 ```
 
 ## Credits
-  * [Couton Alexia][Alexia] : (Scientists)
-  * [Fauquembergue Victor][Me] (Main, Update divinity (classe given with the project), Wonder, Unit, City) 
+  * [Couton Alexia][Alexia] (Scientists)
+  * [Fauquembergue Victor][Me] (Main, Update divinity (class given with the project), Wonder, Unit, City) 
   * Lagadec Julien (Some ideas)
 
 [BDDWiki]: https://en.wikipedia.org/wiki/Behavior-driven_development
